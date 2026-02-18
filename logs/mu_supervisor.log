@@ -1,0 +1,157 @@
+2026-02-17 23:15:59 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:16:00 | WARNING  | mu_supervisor | OCR error reading level: C:/Program Files/Tesseract-OCR/tesseract.exe is not installed or it's not in your PATH. See README file for more information.
+2026-02-17 23:16:11 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:18:01 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:18:01 | WARNING  | mu_supervisor | OCR error reading level: C:/Program Files/Tesseract-OCR/tesseract.exe is not installed or it's not in your PATH. See README file for more information.
+2026-02-17 23:18:24 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:18:24 | WARNING  | mu_supervisor | OCR error reading level: C:/Program Files/Tesseract-OCR/tesseract.exe is not installed or it's not in your PATH. See README file for more information.
+2026-02-17 23:18:50 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:20:07 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:20:07 | WARNING  | mu_supervisor | OCR error reading level: [WinError 5] Access is denied
+2026-02-17 23:20:37 | WARNING  | mu_supervisor | OCR error reading level: [WinError 5] Access is denied
+2026-02-17 23:21:08 | WARNING  | mu_supervisor | OCR error reading level: [WinError 5] Access is denied
+2026-02-17 23:21:11 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:21:43 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:21:43 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:21:43 | INFO     | mu_supervisor | Launching game from C:/HeroesMu/heroesmu.exe
+2026-02-17 23:21:43 | ERROR    | mu_supervisor | Launch failed: Failed to start launcher: [WinError 2] The system cannot find the file specified
+2026-02-17 23:21:43 | INFO     | mu_supervisor | Error pause: sleeping 600s before retry
+2026-02-17 23:21:49 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:22:07 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:22:07 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:22:07 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesmu.exe
+2026-02-17 23:22:07 | ERROR    | mu_supervisor | Launch failed: Failed to start launcher: [WinError 740] The requested operation requires elevation
+2026-02-17 23:22:07 | INFO     | mu_supervisor | Error pause: sleeping 600s before retry
+2026-02-17 23:22:10 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:23:08 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:23:08 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:23:08 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:23:08 | ERROR    | mu_supervisor | Launch failed: Failed to start launcher: [WinError 740] The requested operation requires elevation
+2026-02-17 23:23:08 | INFO     | mu_supervisor | Error pause: sleeping 600s before retry
+2026-02-17 23:23:17 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:24:08 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:24:08 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:24:08 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:24:10 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:24:13 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:24:16 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:24:17 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:24:34 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:24:34 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:24:34 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:24:39 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:24:42 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:24:45 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:24:48 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:24:51 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:25:09 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:25:09 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:25:09 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:25:14 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:25:17 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:25:20 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:25:23 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:25:52 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:25:52 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:25:52 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:25:57 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:26:01 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:26:03 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:27:59 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:27:59 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:27:59 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:28:04 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:28:07 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:28:11 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:28:14 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:28:20 | INFO     | mu_supervisor | Clicking OK at (931, 621)
+2026-02-17 23:28:23 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:28:25 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:28:25 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:28:25 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:28:30 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:28:33 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:28:36 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:28:39 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:28:46 | INFO     | mu_supervisor | Clicking OK at (931, 621)
+2026-02-17 23:28:47 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:29:32 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:29:32 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:29:32 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:29:37 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:29:47 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:29:50 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:30:39 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:30:39 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:30:39 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:30:44 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:30:54 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:30:56 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:31:14 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:31:14 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:31:14 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:31:19 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:31:29 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:31:32 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:31:36 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:31:37 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:31:52 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:31:52 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:31:52 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:31:57 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:32:12 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:32:15 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:32:18 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:32:22 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:32:35 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:32:35 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:32:35 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:32:40 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:32:56 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:32:59 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:33:02 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:33:04 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:34:11 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:34:11 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:34:11 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:34:16 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:34:31 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:34:35 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:34:39 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:34:42 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:35:19 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:35:19 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:35:19 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:35:24 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:35:39 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:35:44 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:35:48 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:35:51 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:36:43 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:36:43 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:36:43 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:36:48 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:37:03 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:37:08 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:37:11 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:37:16 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:38:04 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:38:04 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:38:04 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:38:09 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:38:24 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-17 23:38:29 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-17 23:38:33 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-17 23:38:41 | INFO     | mu_supervisor | Clicking OK at (931, 621)
+2026-02-17 23:38:46 | INFO     | mu_supervisor | Clicking Connect at (1655, 973)
+2026-02-17 23:38:47 | INFO     | mu_supervisor | Game window appeared (HWND=1052364) — login complete
+2026-02-17 23:38:47 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-17 23:38:47 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-17 23:38:52 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-17 23:38:56 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:43:14 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:43:14 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=0)
+2026-02-17 23:43:35 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-17 23:43:36 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-17 23:43:36 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=0)
+2026-02-17 23:43:44 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)

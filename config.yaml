@@ -1,0 +1,26 @@
+window_title: "MU"
+tesseract_path: "E:/Tesseract-OCR/tesseract.exe"
+
+ocr_regions:
+  level: { x: 580, y: 460, w: 80, h: 20 }
+  experience: { x: 580, y: 480, w: 120, h: 20 }
+
+stats:
+  interval_levels: 50
+  points_per_level: 5
+  distribution: { str: 0.0, agi: 0.0, vit: 0.0, ene: 1.0 }
+
+reset_level: 400
+
+launcher:
+  exe_path: "E:/HeroesMu/heroesMu.exe"
+  password: "ha9xng2q"
+  start_button: { x: 1375, y: 765 }
+  server_button: { x: 792, y: 518 }
+  sub_server_button: { x: 957, y: 548 }
+  password_field: { x: 931, y: 574 }
+  ok_button: { x: 931, y: 621 }
+  connect_button: { x: 1655, y: 973 }
+
+loop_interval_seconds: 30
+log_level: "INFO"
