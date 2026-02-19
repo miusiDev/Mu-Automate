@@ -24,15 +24,10 @@ logger = logging.getLogger("mu_supervisor")
 
 
 class GameLauncher:
-    """Detect game crashes and relaunch through the HeroesMu launcher.
+    """Detect game crashes and relaunch through a configurable launcher.
 
-    Full login sequence:
-        1. Open heroesmu.exe
-        2. Click Start button
-        3. Select server HeroesMu → HeroesMu-2(Pvp)(Conectar)
-        4. Enter password
-        5. Click OK / press Enter
-        6. Click Connect (first character is selected by default)
+    The login sequence is defined by ``config.launcher.login_steps`` — a list
+    of click/paste actions with coordinates and timing.
     """
 
     def __init__(self, config: Config, wm: WindowManager) -> None:
@@ -66,7 +61,7 @@ class GameLauncher:
         exe = lc.exe_path
         logger.info("Launching game from %s", exe)
 
-        # 1. Open the launcher (with elevation — the game requires admin)
+        # Open the launcher (with elevation — the game requires admin)
         try:
             cwd = os.path.dirname(os.path.abspath(exe))
             result = ctypes.windll.shell32.ShellExecuteW(
@@ -78,64 +73,44 @@ class GameLauncher:
             raise LaunchError(f"Failed to start launcher: {exc}") from exc
 
         # Wait for launcher window
-        launcher_hwnd = self._wait_for_window("heroesmu", LAUNCHER_WINDOW_TIMEOUT)
+        launcher_hwnd = self._wait_for_window(
+            lc.launcher_window_title, LAUNCHER_WINDOW_TIMEOUT,
+        )
         if launcher_hwnd is None:
             raise LaunchError("Launcher window did not appear in time")
         time.sleep(5)  # let the UI settle
 
-        # 2. Click Start
-        logger.info("Clicking Start button at (%d, %d)", lc.start_button.x, lc.start_button.y)
-        pyautogui.click(lc.start_button.x, lc.start_button.y)
-        time.sleep(25)
+        # Execute each login step
+        for i, step in enumerate(lc.login_steps, 1):
+            pt = step.point
 
-        # 3. Select server → sub-server
-        logger.info("Selecting server at (%d, %d)", lc.server_button.x, lc.server_button.y)
-        pyautogui.moveTo(lc.server_button.x, lc.server_button.y)
-        time.sleep(1)
-        pyautogui.mouseDown()
-        time.sleep(0.2)
-        pyautogui.mouseUp()
-        time.sleep(3)
+            if step.action == "paste":
+                logger.info(
+                    "Step %d/%d [%s]: paste at (%d, %d)",
+                    i, len(lc.login_steps), step.label, pt.x, pt.y,
+                )
+                pyautogui.moveTo(pt.x, pt.y)
+                pyautogui.mouseDown()
+                time.sleep(0.2)
+                pyautogui.mouseUp()
+                time.sleep(1)
+                pyperclip.copy(step.text or "")
+                pydirectinput.keyDown("ctrl")
+                pydirectinput.press("v")
+                pydirectinput.keyUp("ctrl")
+            else:  # click
+                logger.info(
+                    "Step %d/%d [%s]: click at (%d, %d)",
+                    i, len(lc.login_steps), step.label, pt.x, pt.y,
+                )
+                pyautogui.moveTo(pt.x, pt.y)
+                time.sleep(1)
+                pyautogui.mouseDown()
+                time.sleep(0.2)
+                pyautogui.mouseUp()
 
-        logger.info("Selecting sub-server at (%d, %d)", lc.sub_server_button.x, lc.sub_server_button.y)
-        pyautogui.moveTo(lc.sub_server_button.x, lc.sub_server_button.y)
-        time.sleep(1)
-        pyautogui.mouseDown()
-        time.sleep(0.2)
-        pyautogui.mouseUp()
-        time.sleep(1)
-
-        # 4. Enter password
-        logger.info("Clicking password field at (%d, %d)", lc.password_field.x, lc.password_field.y)
-        pyautogui.moveTo(lc.password_field.x, lc.password_field.y)
-        time.sleep(0)
-        pyautogui.mouseDown()
-        time.sleep(0.2)
-        pyautogui.mouseUp()
-        time.sleep(1)
-        # Use clipboard paste — more reliable than typing
-        pyperclip.copy(lc.password)
-        pydirectinput.keyDown("ctrl")
-        pydirectinput.press("v")
-        pydirectinput.keyUp("ctrl")
-        time.sleep(3)
-
-        # 5. Click OK (or press Enter)
-        logger.info("Clicking OK at (%d, %d)", lc.ok_button.x, lc.ok_button.y)
-        pyautogui.moveTo(lc.ok_button.x, lc.ok_button.y)
-        time.sleep(1)
-        pyautogui.mouseDown()
-        time.sleep(0.2)
-        pyautogui.mouseUp()
-        time.sleep(3)
-
-        # 6. Click Connect (first character already selected by default)
-        logger.info("Clicking Connect at (%d, %d)", lc.connect_button.x, lc.connect_button.y)
-        pyautogui.moveTo(lc.connect_button.x, lc.connect_button.y)
-        time.sleep(1)
-        pyautogui.mouseDown()
-        time.sleep(0.2)
-        pyautogui.mouseUp()
+            if step.wait_after > 0:
+                time.sleep(step.wait_after)
 
         # Wait for the game window to appear
         game_hwnd = self._wait_for_window(

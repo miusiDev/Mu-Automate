@@ -464,3 +464,264 @@
 2026-02-18 23:39:02 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
 2026-02-18 23:39:08 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
 2026-02-18 23:39:25 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:59:23 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:59:23 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=15)
+2026-02-18 23:59:23 | INFO     | mu_supervisor | Level 15 — active spot: Lorencia (until 50)
+2026-02-18 23:59:23 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-18 23:59:23 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-18 23:59:23 | WARNING  | mu_supervisor | Step 1: could not read coordinates
+2026-02-18 23:59:25 | WARNING  | mu_supervisor | Step 2: could not read coordinates
+2026-02-18 23:59:27 | WARNING  | mu_supervisor | Step 3: could not read coordinates
+2026-02-18 23:59:29 | WARNING  | mu_supervisor | Step 4: could not read coordinates
+2026-02-18 23:59:31 | WARNING  | mu_supervisor | Step 5: could not read coordinates
+2026-02-18 23:59:31 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-19 00:03:03 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-19 00:03:03 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-19 00:03:03 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-19 00:03:03 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-19 00:03:09 | INFO     | mu_supervisor | Step 1/6 [Start]: click at (1375, 765)
+2026-02-19 00:03:35 | INFO     | mu_supervisor | Step 2/6 [Server]: click at (792, 518)
+2026-02-19 00:03:40 | INFO     | mu_supervisor | Step 3/6 [Sub-server]: click at (957, 548)
+2026-02-19 00:03:42 | INFO     | mu_supervisor | Step 4/6 [Password]: paste at (931, 574)
+2026-02-19 00:03:47 | INFO     | mu_supervisor | Step 5/6 [OK]: click at (931, 621)
+2026-02-19 00:03:52 | INFO     | mu_supervisor | Step 6/6 [Connect]: click at (1655, 973)
+2026-02-19 00:03:55 | INFO     | mu_supervisor | Game window appeared (HWND=461126) — login complete
+2026-02-19 00:03:55 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=1)
+2026-02-19 00:03:55 | INFO     | mu_supervisor | Level 1 — active spot: Lorencia (until 50)
+2026-02-19 00:03:55 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-19 00:03:55 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-19 00:03:56 | INFO     | mu_supervisor | Step 1: pos=(150,128) target=(153,127) dist=3.2
+2026-02-19 00:03:58 | INFO     | mu_supervisor | Step 2: pos=(153,126) target=(153,127) dist=1.0
+2026-02-19 00:03:58 | INFO     | mu_supervisor | Reached waypoint 1!
+2026-02-19 00:03:58 | INFO     | mu_supervisor | Navigating to waypoint 2 (154, 127)
+2026-02-19 00:03:58 | INFO     | mu_supervisor | Step 3: pos=(153,126) target=(154,127) dist=1.4
+2026-02-19 00:04:01 | INFO     | mu_supervisor | Step 4: pos=(155,127) target=(154,127) dist=1.0
+2026-02-19 00:04:01 | INFO     | mu_supervisor | Reached waypoint 2!
+2026-02-19 00:04:01 | INFO     | mu_supervisor | Navigating to spot (180, 127)
+2026-02-19 00:04:01 | INFO     | mu_supervisor | Step 5: pos=(155,127) target=(180,127) dist=25.0
+2026-02-19 00:04:04 | INFO     | mu_supervisor | Step 6: pos=(158,126) target=(180,127) dist=22.0
+2026-02-19 00:04:06 | INFO     | mu_supervisor | Step 7: pos=(161,126) target=(180,127) dist=19.0
+2026-02-19 00:04:08 | INFO     | mu_supervisor | Step 8: pos=(158,128) target=(180,127) dist=22.0
+2026-02-19 00:04:11 | INFO     | mu_supervisor | Step 9: pos=(160,126) target=(180,127) dist=20.0
+2026-02-19 00:04:13 | INFO     | mu_supervisor | Step 10: pos=(159,126) target=(180,127) dist=21.0
+2026-02-19 00:04:16 | INFO     | mu_supervisor | Step 11: pos=(162,126) target=(180,127) dist=18.0
+2026-02-19 00:04:18 | INFO     | mu_supervisor | Step 12: pos=(163,127) target=(180,127) dist=17.0
+2026-02-19 00:04:21 | INFO     | mu_supervisor | Step 13: pos=(166,126) target=(180,127) dist=14.0
+2026-02-19 00:04:23 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-19 00:07:45 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-19 00:07:45 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-19 00:07:45 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-19 00:07:45 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-19 00:07:51 | INFO     | mu_supervisor | Step 1/6 [Start]: click at (1375, 765)
+2026-02-19 00:08:17 | INFO     | mu_supervisor | Step 2/6 [Server]: click at (792, 518)
+2026-02-19 00:08:22 | INFO     | mu_supervisor | Step 3/6 [Sub-server]: click at (957, 548)
+2026-02-19 00:08:24 | INFO     | mu_supervisor | Step 4/6 [Password]: paste at (931, 574)
+2026-02-19 00:08:29 | INFO     | mu_supervisor | Step 5/6 [OK]: click at (931, 621)
+2026-02-19 00:08:34 | INFO     | mu_supervisor | Step 6/6 [Connect]: click at (1655, 973)
+2026-02-19 00:08:38 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-19 00:08:43 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-19 00:08:43 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-19 00:08:43 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-19 00:08:43 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-19 00:08:49 | INFO     | mu_supervisor | Step 1/6 [Start]: click at (1375, 765)
+2026-02-19 00:09:15 | INFO     | mu_supervisor | Step 2/6 [Server]: click at (792, 518)
+2026-02-19 00:09:20 | INFO     | mu_supervisor | Step 3/6 [Sub-server]: click at (957, 548)
+2026-02-19 00:09:22 | INFO     | mu_supervisor | Step 4/6 [Password]: paste at (931, 574)
+2026-02-19 00:09:27 | INFO     | mu_supervisor | Step 5/6 [OK]: click at (931, 621)
+2026-02-19 00:09:32 | INFO     | mu_supervisor | Step 6/6 [Connect]: click at (1655, 973)
+2026-02-19 00:09:35 | INFO     | mu_supervisor | Game window appeared (HWND=1052332) — login complete
+2026-02-19 00:09:35 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=1)
+2026-02-19 00:09:35 | INFO     | mu_supervisor | Post-reset distribution: 2000 points (400 levels x 5 pts/lvl)
+2026-02-19 00:09:38 | INFO     | mu_supervisor | Sent /addstr: 200 total points
+2026-02-19 00:09:43 | INFO     | mu_supervisor | Sent /addagi: 600 total points
+2026-02-19 00:09:48 | INFO     | mu_supervisor | Sent /addvit: 200 total points
+2026-02-19 00:09:52 | INFO     | mu_supervisor | Sent /addene: 1000 total points
+2026-02-19 00:09:52 | INFO     | mu_supervisor | Post-reset distribution complete
+2026-02-19 00:09:52 | INFO     | mu_supervisor | Level 1 — active spot: Lorencia (until 50)
+2026-02-19 00:09:52 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-19 00:09:52 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-19 00:09:53 | INFO     | mu_supervisor | Step 1: pos=(143,131) target=(153,127) dist=10.8
+2026-02-19 00:09:55 | INFO     | mu_supervisor | Step 2: pos=(146,129) target=(153,127) dist=7.3
+2026-02-19 00:09:57 | INFO     | mu_supervisor | Step 3: pos=(149,127) target=(153,127) dist=4.0
+2026-02-19 00:10:00 | INFO     | mu_supervisor | Step 4: pos=(152,126) target=(153,127) dist=1.4
+2026-02-19 00:10:02 | INFO     | mu_supervisor | Step 5: pos=(154,127) target=(153,127) dist=1.0
+2026-02-19 00:10:02 | INFO     | mu_supervisor | Reached waypoint 1!
+2026-02-19 00:10:02 | INFO     | mu_supervisor | Navigating to waypoint 2 (154, 127)
+2026-02-19 00:10:03 | INFO     | mu_supervisor | Step 6: pos=(154,127) target=(154,127) dist=0.0
+2026-02-19 00:10:03 | INFO     | mu_supervisor | Reached waypoint 2!
+2026-02-19 00:10:03 | INFO     | mu_supervisor | Navigating to spot (180, 127)
+2026-02-19 00:10:03 | INFO     | mu_supervisor | Step 7: pos=(154,127) target=(180,127) dist=26.0
+2026-02-19 00:10:05 | INFO     | mu_supervisor | Step 8: pos=(157,126) target=(180,127) dist=23.0
+2026-02-19 00:10:08 | INFO     | mu_supervisor | Step 9: pos=(160,126) target=(180,127) dist=20.0
+2026-02-19 00:10:10 | INFO     | mu_supervisor | Step 10: pos=(163,126) target=(180,127) dist=17.0
+2026-02-19 00:10:13 | INFO     | mu_supervisor | Step 11: pos=(166,126) target=(180,127) dist=14.0
+2026-02-19 00:10:15 | INFO     | mu_supervisor | Step 12: pos=(170,128) target=(180,127) dist=10.0
+2026-02-19 00:10:18 | INFO     | mu_supervisor | Step 13: pos=(171,126) target=(180,127) dist=9.1
+2026-02-19 00:10:20 | INFO     | mu_supervisor | Step 14: pos=(174,126) target=(180,127) dist=6.1
+2026-02-19 00:10:23 | INFO     | mu_supervisor | Step 15: pos=(176,126) target=(180,127) dist=4.1
+2026-02-19 00:10:25 | INFO     | mu_supervisor | Step 16: pos=(176,126) target=(180,127) dist=4.1
+2026-02-19 00:10:25 | INFO     | mu_supervisor | Stuck count: 1/3
+2026-02-19 00:10:28 | INFO     | mu_supervisor | Step 17: pos=(179,126) target=(180,127) dist=1.4
+2026-02-19 00:10:30 | WARNING  | mu_supervisor | Step 18: could not read coordinates
+2026-02-19 00:10:32 | INFO     | mu_supervisor | Step 19: pos=(179,126) target=(180,127) dist=1.4
+2026-02-19 00:10:32 | INFO     | mu_supervisor | Stuck count: 1/3
+2026-02-19 00:10:34 | INFO     | mu_supervisor | Step 20: pos=(183,128) target=(180,127) dist=3.2
+2026-02-19 00:10:37 | INFO     | mu_supervisor | Step 21: pos=(182,128) target=(180,127) dist=2.2
+2026-02-19 00:10:39 | INFO     | mu_supervisor | Step 22: pos=(179,127) target=(180,127) dist=1.0
+2026-02-19 00:10:39 | INFO     | mu_supervisor | Reached spot!
+2026-02-19 00:10:40 | INFO     | mu_supervisor | Farming at Lorencia — holding right-click until level 50
+2026-02-19 00:11:10 | INFO     | mu_supervisor | Farming at Lorencia — level 10 / 50
+2026-02-19 00:11:40 | INFO     | mu_supervisor | Farming at Lorencia — level 10 / 50
+2026-02-19 00:11:51 | INFO     | mu_supervisor | Released right-click
+2026-02-19 00:11:51 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-19 00:12:27 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-19 00:12:27 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-19 00:12:27 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-19 00:12:27 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-19 00:12:33 | INFO     | mu_supervisor | Step 1/6 [Start]: click at (1375, 765)
+2026-02-19 00:12:59 | INFO     | mu_supervisor | Step 2/6 [Server]: click at (792, 518)
+2026-02-19 00:13:04 | INFO     | mu_supervisor | Step 3/6 [Sub-server]: click at (957, 548)
+2026-02-19 00:13:06 | INFO     | mu_supervisor | Step 4/6 [Password]: paste at (931, 574)
+2026-02-19 00:13:11 | INFO     | mu_supervisor | Step 5/6 [OK]: click at (931, 621)
+2026-02-19 00:13:16 | INFO     | mu_supervisor | Step 6/6 [Connect]: click at (1655, 973)
+2026-02-19 00:13:20 | INFO     | mu_supervisor | Game window appeared (HWND=3608786) — login complete
+2026-02-19 00:13:20 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=10)
+2026-02-19 00:13:20 | INFO     | mu_supervisor | Level 10 — active spot: Lorencia (until 50)
+2026-02-19 00:13:20 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-19 00:13:20 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-19 00:13:20 | INFO     | mu_supervisor | Step 1: pos=(135,125) target=(153,127) dist=18.1
+2026-02-19 00:13:22 | INFO     | mu_supervisor | Step 2: pos=(138,125) target=(153,127) dist=15.1
+2026-02-19 00:13:25 | INFO     | mu_supervisor | Step 3: pos=(141,125) target=(153,127) dist=12.2
+2026-02-19 00:13:27 | INFO     | mu_supervisor | Step 4: pos=(144,125) target=(153,127) dist=9.2
+2026-02-19 00:13:30 | INFO     | mu_supervisor | Step 5: pos=(147,126) target=(153,127) dist=6.1
+2026-02-19 00:13:32 | INFO     | mu_supervisor | Step 6: pos=(150,126) target=(153,127) dist=3.2
+2026-02-19 00:13:35 | INFO     | mu_supervisor | Step 7: pos=(153,126) target=(153,127) dist=1.0
+2026-02-19 00:13:35 | INFO     | mu_supervisor | Reached waypoint 1!
+2026-02-19 00:13:35 | INFO     | mu_supervisor | Navigating to waypoint 2 (154, 127)
+2026-02-19 00:13:35 | INFO     | mu_supervisor | Step 8: pos=(153,126) target=(154,127) dist=1.4
+2026-02-19 00:13:37 | INFO     | mu_supervisor | Step 9: pos=(155,127) target=(154,127) dist=1.0
+2026-02-19 00:13:37 | INFO     | mu_supervisor | Reached waypoint 2!
+2026-02-19 00:13:37 | INFO     | mu_supervisor | Navigating to spot (180, 127)
+2026-02-19 00:13:38 | INFO     | mu_supervisor | Step 10: pos=(155,127) target=(180,127) dist=25.0
+2026-02-19 00:13:40 | INFO     | mu_supervisor | Step 11: pos=(158,126) target=(180,127) dist=22.0
+2026-02-19 00:13:43 | INFO     | mu_supervisor | Step 12: pos=(161,126) target=(180,127) dist=19.0
+2026-02-19 00:13:45 | INFO     | mu_supervisor | Step 13: pos=(162,126) target=(180,127) dist=18.0
+2026-02-19 00:13:48 | INFO     | mu_supervisor | Step 14: pos=(164,126) target=(180,127) dist=16.0
+2026-02-19 00:13:50 | INFO     | mu_supervisor | Step 15: pos=(167,126) target=(180,127) dist=13.0
+2026-02-19 00:13:53 | INFO     | mu_supervisor | Step 16: pos=(170,126) target=(180,127) dist=10.0
+2026-02-19 00:13:55 | INFO     | mu_supervisor | Step 17: pos=(173,126) target=(180,127) dist=7.1
+2026-02-19 00:13:57 | INFO     | mu_supervisor | Step 18: pos=(176,126) target=(180,127) dist=4.1
+2026-02-19 00:14:00 | INFO     | mu_supervisor | Step 19: pos=(179,125) target=(180,127) dist=2.2
+2026-02-19 00:14:02 | INFO     | mu_supervisor | Step 20: pos=(180,128) target=(180,127) dist=1.0
+2026-02-19 00:14:02 | INFO     | mu_supervisor | Reached spot!
+2026-02-19 00:14:03 | INFO     | mu_supervisor | Farming at Lorencia — holding right-click until level 50
+2026-02-19 00:14:33 | INFO     | mu_supervisor | Farming at Lorencia — level 21 / 50
+2026-02-19 00:15:03 | INFO     | mu_supervisor | Farming at Lorencia — level 35 / 50
+2026-02-19 00:15:33 | INFO     | mu_supervisor | Farming at Lorencia — level 52 / 50
+2026-02-19 00:15:33 | INFO     | mu_supervisor | Reached level 52 — leaving Lorencia
+2026-02-19 00:15:33 | INFO     | mu_supervisor | Released right-click
+2026-02-19 00:15:33 | INFO     | mu_supervisor | Level 52 — active spot: Devias4 (until 150)
+2026-02-19 00:15:33 | INFO     | mu_supervisor | Warping to Devias4
+2026-02-19 00:15:37 | INFO     | mu_supervisor | Walking to Devias4 spot (80, 176)
+2026-02-19 00:15:37 | INFO     | mu_supervisor | Navigating to spot (80, 176)
+2026-02-19 00:15:38 | INFO     | mu_supervisor | Step 1: pos=(180,128) target=(80,176) dist=110.9
+2026-02-19 00:15:40 | INFO     | mu_supervisor | Step 2: pos=(180,127) target=(80,176) dist=111.4
+2026-02-19 00:15:43 | INFO     | mu_supervisor | Step 3: pos=(177,128) target=(80,176) dist=108.2
+2026-02-19 00:15:45 | INFO     | mu_supervisor | Step 4: pos=(174,129) target=(80,176) dist=105.1
+2026-02-19 00:15:48 | INFO     | mu_supervisor | Step 5: pos=(168,128) target=(80,176) dist=100.2
+2026-02-19 00:15:50 | INFO     | mu_supervisor | Step 6: pos=(163,129) target=(80,176) dist=95.4
+2026-02-19 00:15:52 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-19 00:15:58 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-19 00:15:58 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=50 (current=52)
+2026-02-19 00:15:58 | INFO     | mu_supervisor | Level 52 — active spot: Devias4 (until 150)
+2026-02-19 00:15:58 | INFO     | mu_supervisor | Warping to Devias4
+2026-02-19 00:16:03 | INFO     | mu_supervisor | Walking to Devias4 spot (80, 176)
+2026-02-19 00:16:03 | INFO     | mu_supervisor | Navigating to spot (80, 176)
+2026-02-19 00:16:03 | INFO     | mu_supervisor | Step 1: pos=(158,129) target=(80,176) dist=91.1
+2026-02-19 00:16:06 | INFO     | mu_supervisor | Step 2: pos=(153,130) target=(80,176) dist=86.3
+2026-02-19 00:16:08 | INFO     | mu_supervisor | Step 3: pos=(150,133) target=(80,176) dist=82.2
+2026-02-19 00:16:11 | INFO     | mu_supervisor | Step 4: pos=(147,135) target=(80,176) dist=78.5
+2026-02-19 00:16:12 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-19 00:17:22 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-19 00:17:22 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=50 (current=52)
+2026-02-19 00:17:22 | INFO     | mu_supervisor | Level 52 — active spot: Devias4 (until 150)
+2026-02-19 00:17:22 | INFO     | mu_supervisor | Warping to Devias4
+2026-02-19 00:17:27 | INFO     | mu_supervisor | Walking to Devias4 spot (80, 176)
+2026-02-19 00:17:28 | INFO     | mu_supervisor | Navigating to spot (80, 176)
+2026-02-19 00:17:28 | INFO     | mu_supervisor | Step 1: pos=(153,137) target=(80,176) dist=82.8
+2026-02-19 00:17:30 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-19 00:17:32 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-19 00:17:32 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=50 (current=52)
+2026-02-19 00:17:32 | INFO     | mu_supervisor | Level 52 — active spot: Devias4 (until 150)
+2026-02-19 00:17:32 | INFO     | mu_supervisor | Warping to Devias4
+2026-02-19 00:17:37 | INFO     | mu_supervisor | Walking to Devias4 spot (80, 176)
+2026-02-19 00:17:37 | INFO     | mu_supervisor | Navigating to spot (80, 176)
+2026-02-19 00:17:37 | INFO     | mu_supervisor | Step 1: pos=(69,181) target=(80,176) dist=12.1
+2026-02-19 00:17:40 | INFO     | mu_supervisor | Step 2: pos=(72,179) target=(80,176) dist=8.5
+2026-02-19 00:17:42 | INFO     | mu_supervisor | Step 3: pos=(73,177) target=(80,176) dist=7.1
+2026-02-19 00:17:45 | INFO     | mu_supervisor | Step 4: pos=(73,177) target=(80,176) dist=7.1
+2026-02-19 00:17:45 | INFO     | mu_supervisor | Stuck count: 1/3
+2026-02-19 00:17:47 | INFO     | mu_supervisor | Step 5: pos=(71,176) target=(80,176) dist=9.0
+2026-02-19 00:17:50 | INFO     | mu_supervisor | Step 6: pos=(74,176) target=(80,176) dist=6.0
+2026-02-19 00:17:52 | INFO     | mu_supervisor | Step 7: pos=(76,175) target=(80,176) dist=4.1
+2026-02-19 00:17:55 | INFO     | mu_supervisor | Step 8: pos=(79,175) target=(80,176) dist=1.4
+2026-02-19 00:17:57 | INFO     | mu_supervisor | Step 9: pos=(80,178) target=(80,176) dist=2.0
+2026-02-19 00:18:00 | INFO     | mu_supervisor | Step 10: pos=(81,175) target=(80,176) dist=1.4
+2026-02-19 00:18:02 | INFO     | mu_supervisor | Step 11: pos=(81,175) target=(80,176) dist=1.4
+2026-02-19 00:18:02 | INFO     | mu_supervisor | Stuck count: 1/3
+2026-02-19 00:18:05 | INFO     | mu_supervisor | Step 12: pos=(82,177) target=(80,176) dist=2.2
+2026-02-19 00:18:07 | INFO     | mu_supervisor | Step 13: pos=(85,176) target=(80,176) dist=5.0
+2026-02-19 00:18:09 | INFO     | mu_supervisor | Step 14: pos=(85,175) target=(80,176) dist=5.1
+2026-02-19 00:18:12 | INFO     | mu_supervisor | Step 15: pos=(85,175) target=(80,176) dist=5.1
+2026-02-19 00:18:12 | INFO     | mu_supervisor | Stuck count: 1/3
+2026-02-19 00:18:14 | INFO     | mu_supervisor | Step 16: pos=(81,176) target=(80,176) dist=1.0
+2026-02-19 00:18:14 | INFO     | mu_supervisor | Reached spot!
+2026-02-19 00:18:15 | INFO     | mu_supervisor | Activated MU Helper at Devias4 — farming until level 150
+2026-02-19 00:18:45 | INFO     | mu_supervisor | Farming at Devias4 (MU Helper) — level 78 / 150
+2026-02-19 00:19:15 | INFO     | mu_supervisor | Farming at Devias4 (MU Helper) — level 97 / 150
+2026-02-19 00:19:45 | INFO     | mu_supervisor | Farming at Devias4 (MU Helper) — level 116 / 150
+2026-02-19 00:19:45 | INFO     | mu_supervisor | Distributing stats: 66 levels gained × 5 pts = 330 total points
+2026-02-19 00:19:48 | INFO     | mu_supervisor | Sent /addstr: 33 total points
+2026-02-19 00:19:51 | INFO     | mu_supervisor | Sent /addagi: 99 total points
+2026-02-19 00:19:53 | INFO     | mu_supervisor | Sent /addvit: 33 total points
+2026-02-19 00:19:56 | INFO     | mu_supervisor | Sent /addene: 165 total points
+2026-02-19 00:19:56 | INFO     | mu_supervisor | Stat distribution complete. Baseline updated to level 116
+2026-02-19 00:20:26 | INFO     | mu_supervisor | Farming at Devias4 (MU Helper) — level 142 / 150
+2026-02-19 00:20:56 | INFO     | mu_supervisor | Farming at Devias4 (MU Helper) — level 161 / 150
+2026-02-19 00:20:56 | INFO     | mu_supervisor | Reached level 161 — leaving Devias4
+2026-02-19 00:20:56 | INFO     | mu_supervisor | Level 161 — active spot: LostTower6 (until 400)
+2026-02-19 00:20:56 | INFO     | mu_supervisor | Warping to LostTower6
+2026-02-19 00:21:01 | INFO     | mu_supervisor | Activated MU Helper at LostTower6 — farming until level 400
+2026-02-19 00:21:31 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 187 / 400
+2026-02-19 00:21:31 | INFO     | mu_supervisor | Distributing stats: 71 levels gained × 5 pts = 355 total points
+2026-02-19 00:21:34 | INFO     | mu_supervisor | Sent /addstr: 35 total points
+2026-02-19 00:21:37 | INFO     | mu_supervisor | Sent /addagi: 106 total points
+2026-02-19 00:21:40 | INFO     | mu_supervisor | Sent /addvit: 35 total points
+2026-02-19 00:21:42 | INFO     | mu_supervisor | Sent /addene: 177 total points
+2026-02-19 00:21:42 | INFO     | mu_supervisor | Stat distribution complete. Baseline updated to level 187
+2026-02-19 00:22:12 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 214 / 400
+2026-02-19 00:22:42 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 237 / 400
+2026-02-19 00:22:42 | INFO     | mu_supervisor | Distributing stats: 50 levels gained × 5 pts = 250 total points
+2026-02-19 00:22:45 | INFO     | mu_supervisor | Sent /addstr: 25 total points
+2026-02-19 00:22:48 | INFO     | mu_supervisor | Sent /addagi: 75 total points
+2026-02-19 00:22:50 | INFO     | mu_supervisor | Sent /addvit: 25 total points
+2026-02-19 00:22:53 | INFO     | mu_supervisor | Sent /addene: 125 total points
+2026-02-19 00:22:53 | INFO     | mu_supervisor | Stat distribution complete. Baseline updated to level 237
+2026-02-19 00:23:23 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 259 / 400
+2026-02-19 00:23:53 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 272 / 400
+2026-02-19 00:24:23 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 279 / 400
+2026-02-19 00:24:53 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 286 / 400
+2026-02-19 00:25:23 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 291 / 400
+2026-02-19 00:25:23 | INFO     | mu_supervisor | Distributing stats: 54 levels gained × 5 pts = 270 total points
+2026-02-19 00:25:26 | INFO     | mu_supervisor | Sent /addstr: 27 total points
+2026-02-19 00:25:29 | INFO     | mu_supervisor | Sent /addagi: 81 total points
+2026-02-19 00:25:31 | INFO     | mu_supervisor | Sent /addvit: 27 total points
+2026-02-19 00:25:34 | INFO     | mu_supervisor | Sent /addene: 135 total points
+2026-02-19 00:25:34 | INFO     | mu_supervisor | Stat distribution complete. Baseline updated to level 291
+2026-02-19 00:26:04 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 297 / 400
+2026-02-19 00:26:34 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 301 / 400
+2026-02-19 00:27:04 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 304 / 400
+2026-02-19 00:27:34 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 307 / 400
+2026-02-19 00:28:04 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 310 / 400
+2026-02-19 00:28:34 | INFO     | mu_supervisor | Farming at LostTower6 (MU Helper) — level 313 / 400
+2026-02-19 00:28:39 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)

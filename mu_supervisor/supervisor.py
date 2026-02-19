@@ -153,6 +153,13 @@ class Supervisor:
             self._stats.initialize_from_level(level)
             self._initialized = True
 
+            # After reset (or fresh start at level 1), distribute all points
+            if level <= 1:
+                try:
+                    self._stats.distribute_for_reset(self._wm)
+                except (DistributionError, GameWindowError) as exc:
+                    logger.error("Post-reset stat distribution failed: %s", exc)
+
         # Check for active farming spot
         active_spot = self._get_active_spot(level)
         if active_spot is not None and self._navigator is not None:

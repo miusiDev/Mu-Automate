@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass, field
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import yaml
 
@@ -70,15 +70,21 @@ class NavigationConfig:
 
 
 @dataclass
+class LoginStep:
+    """A single step in the launcher login sequence."""
+    action: str          # "click" or "paste"
+    label: str
+    point: Point
+    wait_after: float
+    text: Optional[str] = None
+
+
+@dataclass
 class LauncherConfig:
     exe_path: str
-    password: str
-    start_button: Point
-    server_button: Point
-    sub_server_button: Point
-    password_field: Point
-    ok_button: Point
+    launcher_window_title: str
     connect_button: Point
+    login_steps: List[LoginStep]
 
 
 @dataclass
@@ -120,15 +126,20 @@ class Config:
             )
 
             lr = raw["launcher"]
+            login_steps = []
+            for step_raw in lr.get("login_steps", []):
+                login_steps.append(LoginStep(
+                    action=step_raw["action"],
+                    label=step_raw.get("label", ""),
+                    point=Point(**step_raw["point"]),
+                    wait_after=float(step_raw.get("wait_after", 0)),
+                    text=step_raw.get("text"),
+                ))
             launcher = LauncherConfig(
                 exe_path=lr["exe_path"],
-                password=lr["password"],
-                start_button=Point(**lr["start_button"]),
-                server_button=Point(**lr["server_button"]),
-                sub_server_button=Point(**lr["sub_server_button"]),
-                password_field=Point(**lr["password_field"]),
-                ok_button=Point(**lr["ok_button"]),
+                launcher_window_title=lr.get("launcher_window_title", ""),
                 connect_button=Point(**lr["connect_button"]),
+                login_steps=login_steps,
             )
 
             navigation = None

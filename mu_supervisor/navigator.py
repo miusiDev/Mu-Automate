@@ -50,7 +50,10 @@ class Navigator:
         wm.focus_window()
         pydirectinput.press("m")
         time.sleep(WARP_MENU_DELAY)
-        pyautogui.click(warp_button.x, warp_button.y)
+        pyautogui.moveTo(warp_button.x, warp_button.y)
+        pyautogui.mouseDown()
+        time.sleep(0.2)
+        pyautogui.mouseUp()
         time.sleep(WARP_TRAVEL_DELAY)
 
     # ------------------------------------------------------------------

@@ -29,6 +29,7 @@ class StatDistributor:
         self._interval = config.stats.interval_levels
         self._points_per_level = config.stats.points_per_level
         self._distribution = config.stats.distribution
+        self._reset_level = config.reset_level
         self._last_distributed_level: int = 0
 
     @property
@@ -85,6 +86,42 @@ class StatDistributor:
             "Stat distribution complete. Baseline updated to level %d",
             current_level,
         )
+
+    def distribute_for_reset(self, wm: WindowManager) -> None:
+        """Distribute all stat points after a reset (character at level 1).
+
+        Uses reset_level * points_per_level as the total pool and waits
+        2 seconds between each /add command.
+        """
+        total_points = self._reset_level * self._points_per_level
+        logger.info(
+            "Post-reset distribution: %d points (%d levels x %d pts/lvl)",
+            total_points, self._reset_level, self._points_per_level,
+        )
+
+        wm.focus_window()
+
+        first = True
+        for stat_key, ratio in self._distribution.items():
+            if ratio <= 0:
+                continue
+
+            points = int(total_points * ratio)
+            if points <= 0:
+                continue
+
+            command = STAT_COMMANDS.get(stat_key)
+            if command is None:
+                logger.warning("Unknown stat key %r, skipping", stat_key)
+                continue
+
+            if not first:
+                time.sleep(2.0)
+            first = False
+
+            self._send_stat_points(command, points, wm)
+
+        logger.info("Post-reset distribution complete")
 
     # ------------------------------------------------------------------
     # Internal
