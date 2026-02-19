@@ -138,7 +138,7 @@ class GameLauncher:
 
         # Wait for the game window to appear
         game_hwnd = self._wait_for_window(
-            self._config.window_title, GAME_WINDOW_TIMEOUT, exact=True
+            self._config.window_title, GAME_WINDOW_TIMEOUT, exact=False
         )
         if game_hwnd is None:
             raise LaunchError("Game window did not appear after login sequence")

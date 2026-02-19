@@ -1,4 +1,4 @@
-window_title: "MU"
+window_title: "HeroesMu"
 tesseract_path: "E:/Tesseract-OCR/tesseract.exe"
 
 ocr_regions:
@@ -8,7 +8,7 @@ ocr_regions:
 stats:
   interval_levels: 50
   points_per_level: 5
-  distribution: { str: 0.0, agi: 0.0, vit: 0.0, ene: 1.0 }
+  distribution: { str: 0.1, agi: 0.3, vit: 0.1, ene: 0.5 }
 
 reset_level: 400
 
@@ -21,6 +21,22 @@ launcher:
   password_field: { x: 931, y: 574 }
   ok_button: { x: 931, y: 621 }
   connect_button: { x: 1655, y: 973 }
+
+navigation:
+  # Región de pantalla donde se muestran las coordenadas X,Y del personaje
+  coords_region: { x: 155, y: 30, w: 95, h: 25 }
+  # Waypoints intermedios antes de llegar al spot (para esquivar paredes)
+  waypoints:
+    - { x: 153, y: 127 }  # subir Y por el corredor
+    - { x: 154, y: 127 }  # cruzar el pasaje
+  # Coordenadas del spot de farmeo en Lorencia (tile X, Y)
+  spot: { x: 180, y: 127 }
+  # Se considera "llegó" si está a N tiles del spot
+  tolerance: 1
+  # Pausa entre cada paso de movimiento (segundos)
+  step_delay: 1.5
+  # Máximo de pasos antes de abortar navegación
+  max_steps: 100
 
 loop_interval_seconds: 30
 log_level: "INFO"

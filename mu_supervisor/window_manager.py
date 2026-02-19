@@ -41,7 +41,7 @@ class WindowManager:
         def _enum_cb(hwnd: int, _: None) -> None:
             if win32gui.IsWindowVisible(hwnd):
                 title = win32gui.GetWindowText(hwnd)
-                if title.lower() == self._title.lower():
+                if self._title.lower() in title.lower():
                     results.append(hwnd)
 
         win32gui.EnumWindows(_enum_cb, None)
@@ -56,6 +56,15 @@ class WindowManager:
         logger.debug("Found window HWND=%s title=%r", self._hwnd,
                       win32gui.GetWindowText(self._hwnd))
         return self._hwnd
+
+    def get_window_title(self) -> Optional[str]:
+        """Return the current window title, or None if no window."""
+        if self._hwnd is None:
+            return None
+        try:
+            return win32gui.GetWindowText(self._hwnd)
+        except Exception:
+            return None
 
     def is_window_alive(self) -> bool:
         """Check whether the stored HWND still refers to a live window."""

@@ -61,3 +61,7 @@ TYPE_CHAR_DELAY = 0.05
 LAUNCHER_WINDOW_TIMEOUT = 30
 GAME_WINDOW_TIMEOUT = 60
 CHAR_SELECT_TIMEOUT = 30
+
+# Navigation constants
+NAVIGATION_CLICK_RADIUS = 200  # pixels from window center for movement clicks
+NAVIGATION_COORD_PATTERN = r"(\d{1,3})\D+(\d{1,3})"  # matches "X , Y" or "X: Y" etc.

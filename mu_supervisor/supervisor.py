@@ -18,6 +18,7 @@ from .exceptions import (
     OCRError,
 )
 from .game_launcher import GameLauncher
+from .navigator import Navigator
 from .ocr_reader import OcrReader
 from .stat_distributor import StatDistributor
 from .window_manager import WindowManager
@@ -29,6 +30,7 @@ class State(enum.Enum):
     CHECK_GAME_ALIVE = "CHECK_GAME_ALIVE"
     LAUNCH_GAME = "LAUNCH_GAME"
     READ_STATUS = "READ_STATUS"
+    NAVIGATE_TO_SPOT = "NAVIGATE_TO_SPOT"
     DISTRIBUTE_STATS = "DISTRIBUTE_STATS"
     WAIT = "WAIT"
     ERROR_PAUSE = "ERROR_PAUSE"
@@ -53,11 +55,15 @@ class Supervisor:
         self._ocr = OcrReader(config)
         self._stats = StatDistributor(config)
         self._launcher = GameLauncher(config, self._wm)
+        self._navigator: Navigator | None = (
+            Navigator(config, self._ocr) if config.navigation else None
+        )
 
         self._state = State.CHECK_GAME_ALIVE
         self._error_pause_seconds: float = 0
         self._initialized = False
         self._current_level: int | None = None
+        self._needs_navigation: bool = True
 
     def run(self) -> None:
         """Run the supervisor loop indefinitely."""
@@ -87,6 +93,8 @@ class Supervisor:
             self._do_launch_game()
         elif self._state == State.READ_STATUS:
             self._do_read_status()
+        elif self._state == State.NAVIGATE_TO_SPOT:
+            self._do_navigate_to_spot()
         elif self._state == State.DISTRIBUTE_STATS:
             self._do_distribute_stats()
         elif self._state == State.WAIT:
@@ -108,6 +116,7 @@ class Supervisor:
         try:
             self._launcher.launch_and_login()
             self._initialized = False  # force re-init of stat baseline
+            self._needs_navigation = True
             self._state = State.CHECK_GAME_ALIVE
         except LaunchError as exc:
             logger.error("Launch failed: %s", exc)
@@ -133,6 +142,16 @@ class Supervisor:
 
         self._current_level = level
 
+        # Clear navigation flag once we're past low levels
+        if level >= 30:
+            self._needs_navigation = False
+
+        # Low level navigation: walk to farming spot
+        if level < 30 and self._needs_navigation and self._navigator is not None:
+            logger.info("Level %d < 30 — navigating to farming spot", level)
+            self._state = State.NAVIGATE_TO_SPOT
+            return
+
         # One-time initialization of stat distributor baseline
         if not self._initialized:
             self._stats.initialize_from_level(level)
@@ -152,6 +171,25 @@ class Supervisor:
             self._state = State.DISTRIBUTE_STATS
         else:
             self._state = State.WAIT
+
+    def _do_navigate_to_spot(self) -> None:
+        if self._navigator is None:
+            self._state = State.WAIT
+            return
+
+        try:
+            success = self._navigator.navigate_to_spot(self._wm)
+        except GameWindowError:
+            self._state = State.CHECK_GAME_ALIVE
+            return
+
+        if success:
+            self._needs_navigation = False
+            self._state = State.WAIT
+        else:
+            logger.error("Navigation to spot failed — entering error pause")
+            self._state = State.ERROR_PAUSE
+            self._error_pause_seconds = 60
 
     def _do_distribute_stats(self) -> None:
         if self._current_level is None:

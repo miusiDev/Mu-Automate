@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
-from typing import Dict
+from typing import Dict, List
 
 import yaml
 
@@ -50,6 +50,16 @@ class StatsConfig:
 
 
 @dataclass
+class NavigationConfig:
+    coords_region: Region
+    spot: Point
+    waypoints: List[Point]
+    tolerance: int = 3
+    step_delay: float = 1.5
+    max_steps: int = 100
+
+
+@dataclass
 class LauncherConfig:
     exe_path: str
     password: str
@@ -69,6 +79,7 @@ class Config:
     stats: StatsConfig
     reset_level: int
     launcher: LauncherConfig
+    navigation: NavigationConfig | None = None
     loop_interval_seconds: int = 30
     log_level: str = "INFO"
 
@@ -110,6 +121,21 @@ class Config:
                 connect_button=Point(**lr["connect_button"]),
             )
 
+            navigation = None
+            nav_raw = raw.get("navigation")
+            if nav_raw is not None:
+                waypoints = [
+                    Point(**wp) for wp in nav_raw.get("waypoints", [])
+                ]
+                navigation = NavigationConfig(
+                    coords_region=Region(**nav_raw["coords_region"]),
+                    spot=Point(**nav_raw["spot"]),
+                    waypoints=waypoints,
+                    tolerance=nav_raw.get("tolerance", 3),
+                    step_delay=nav_raw.get("step_delay", 1.5),
+                    max_steps=nav_raw.get("max_steps", 100),
+                )
+
             return cls(
                 window_title=raw["window_title"],
                 tesseract_path=raw["tesseract_path"],
@@ -117,6 +143,7 @@ class Config:
                 stats=stats,
                 reset_level=raw["reset_level"],
                 launcher=launcher,
+                navigation=navigation,
                 loop_interval_seconds=raw.get("loop_interval_seconds", 30),
                 log_level=raw.get("log_level", "INFO"),
             )
