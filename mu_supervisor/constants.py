@@ -65,3 +65,11 @@ CHAR_SELECT_TIMEOUT = 30
 # Navigation constants
 NAVIGATION_CLICK_RADIUS = 200  # pixels from window center for movement clicks
 NAVIGATION_COORD_PATTERN = r"(\d{1,3})\D+(\d{1,3})"  # matches "X , Y" or "X: Y" etc.
+
+# Warp menu timing
+WARP_MENU_DELAY = 1.0  # delay after pressing M to open warp menu
+WARP_TRAVEL_DELAY = 3.0  # delay after clicking warp destination
+
+# Reset timing
+RESET_DISCONNECT_DELAY = 8  # seconds to wait after /reset before reconnecting
+POST_RECONNECT_DELAY = 10  # seconds to wait after clicking Connect

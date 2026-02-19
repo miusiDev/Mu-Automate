@@ -1,4 +1,4 @@
-"""Navigator: walk the character to the farming spot after a reset."""
+"""Navigator: walk the character between farming spots and warp between maps."""
 
 from __future__ import annotations
 
@@ -7,10 +7,11 @@ import math
 import time
 
 import pyautogui
+import pydirectinput
 import win32gui
 
-from .config import Config, NavigationConfig
-from .constants import NAVIGATION_CLICK_RADIUS
+from .config import Config, NavigationConfig, Point
+from .constants import NAVIGATION_CLICK_RADIUS, WARP_MENU_DELAY, WARP_TRAVEL_DELAY
 from .ocr_reader import OcrReader
 from .window_manager import WindowManager
 
@@ -21,7 +22,7 @@ STUCK_THRESHOLD = 3
 
 
 class Navigator:
-    """Read current coordinates via OCR and click-walk to the farming spot.
+    """Read current coordinates via OCR and click-walk to farming spots.
 
     MU Online uses an isometric view where:
       - Game +X → screen down-right
@@ -39,13 +40,28 @@ class Navigator:
         self._nav: NavigationConfig = nav
         self._ocr = ocr
 
-    def navigate_to_spot(self, wm: WindowManager) -> bool:
-        """Walk through waypoints then to the farming spot. Returns True if we arrived."""
-        # Build target list: waypoints first, then final spot
-        targets = [
-            (wp.x, wp.y) for wp in self._nav.waypoints
-        ] + [(self._nav.spot.x, self._nav.spot.y)]
+    # ------------------------------------------------------------------
+    # Warp
+    # ------------------------------------------------------------------
 
+    @staticmethod
+    def warp_to(wm: WindowManager, warp_button: Point) -> None:
+        """Open the warp menu (M key) and click on a destination."""
+        wm.focus_window()
+        pydirectinput.press("m")
+        time.sleep(WARP_MENU_DELAY)
+        pyautogui.click(warp_button.x, warp_button.y)
+        time.sleep(WARP_TRAVEL_DELAY)
+
+    # ------------------------------------------------------------------
+    # Walk navigation
+    # ------------------------------------------------------------------
+
+    def navigate_to(
+        self, wm: WindowManager, spot: Point, waypoints: list[Point],
+    ) -> bool:
+        """Walk through waypoints then to the spot. Returns True if we arrived."""
+        targets = [(wp.x, wp.y) for wp in waypoints] + [(spot.x, spot.y)]
         total_steps = 0
 
         for i, (target_x, target_y) in enumerate(targets):
@@ -61,13 +77,6 @@ class Navigator:
                 return False
 
             logger.info("Reached %s!", label)
-
-            if is_final:
-                # Middle-click hold at the spot
-                logger.info("Arrived at spot — middle-click hold")
-                pyautogui.mouseDown(button="middle")
-                time.sleep(0.2)
-                pyautogui.mouseUp(button="middle")
 
         return True
 

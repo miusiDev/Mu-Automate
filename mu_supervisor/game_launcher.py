@@ -52,7 +52,8 @@ class GameLauncher:
         try:
             self._wm.find_window()
             return True
-        except Exception:
+        except Exception as exc:
+            logger.warning("Game window not found: %s", exc)
             return False
 
     # ------------------------------------------------------------------
@@ -85,7 +86,7 @@ class GameLauncher:
         # 2. Click Start
         logger.info("Clicking Start button at (%d, %d)", lc.start_button.x, lc.start_button.y)
         pyautogui.click(lc.start_button.x, lc.start_button.y)
-        time.sleep(15)
+        time.sleep(25)
 
         # 3. Select server → sub-server
         logger.info("Selecting server at (%d, %d)", lc.server_button.x, lc.server_button.y)
@@ -102,16 +103,16 @@ class GameLauncher:
         pyautogui.mouseDown()
         time.sleep(0.2)
         pyautogui.mouseUp()
-        time.sleep(3)
+        time.sleep(1)
 
         # 4. Enter password
         logger.info("Clicking password field at (%d, %d)", lc.password_field.x, lc.password_field.y)
         pyautogui.moveTo(lc.password_field.x, lc.password_field.y)
-        time.sleep(1)
+        time.sleep(0)
         pyautogui.mouseDown()
         time.sleep(0.2)
         pyautogui.mouseUp()
-        time.sleep(3)
+        time.sleep(1)
         # Use clipboard paste — more reliable than typing
         pyperclip.copy(lc.password)
         pydirectinput.keyDown("ctrl")
@@ -145,6 +146,7 @@ class GameLauncher:
 
         # Store the handle so the supervisor recognises the window on next tick
         self._wm._hwnd = game_hwnd
+        time.sleep(2)  # let the title update with level info
         logger.info("Game window appeared (HWND=%s) — login complete", game_hwnd)
 
     # ------------------------------------------------------------------

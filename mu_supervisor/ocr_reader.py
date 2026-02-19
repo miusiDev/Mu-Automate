@@ -106,7 +106,7 @@ class OcrReader:
         title = wm.get_window_title()
         if not title:
             return None
-        match = re.search(r"Level:\s*\[(\d+)\]", title)
+        match = re.search(r"(?<!Master )Level:\s*\[(\d+)\]", title)
         if not match:
             return None
         level = int(match.group(1))

@@ -101,6 +101,17 @@ class WindowManager:
         time.sleep(0.15)
 
     # ------------------------------------------------------------------
+    # Geometry
+    # ------------------------------------------------------------------
+
+    def get_window_center(self) -> Tuple[int, int]:
+        """Return (cx, cy) screen coordinates of the window center."""
+        if self._hwnd is None:
+            raise GameWindowError("No window handle stored; call find_window() first")
+        rect = win32gui.GetWindowRect(self._hwnd)
+        return ((rect[0] + rect[2]) // 2, (rect[1] + rect[3]) // 2)
+
+    # ------------------------------------------------------------------
     # Screen capture
     # ------------------------------------------------------------------
 

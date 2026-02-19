@@ -99,13 +99,13 @@ class StatDistributor:
             full_cmd = f"{command} {chunk}"
 
             logger.debug("Sending: %s", full_cmd)
-            _send_chat_command(full_cmd, wm)
+            send_chat_command(full_cmd, wm)
             remaining -= chunk
 
         logger.info("Sent %s: %d total points", command, total)
 
 
-def _send_chat_command(text: str, wm: WindowManager) -> None:
+def send_chat_command(text: str, wm: WindowManager) -> None:
     """Open chat, paste the command via clipboard, and press Enter."""
     wm.focus_window()
 

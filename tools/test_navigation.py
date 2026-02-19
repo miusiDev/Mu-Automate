@@ -1,4 +1,4 @@
-"""Test navigation: walk to the farming spot from current position."""
+"""Test navigation: walk to a farming spot from current position."""
 
 import sys
 import os
@@ -39,11 +39,20 @@ def main() -> None:
     else:
         print("No pude leer coordenadas iniciales, pero intento navegar igual...")
 
-    spot = config.navigation.spot
-    print(f"Destino: ({spot.x}, {spot.y})")
+    # Use first spot for testing
+    if not config.navigation.spots:
+        print("No hay spots configurados!")
+        return
+
+    spot_cfg = config.navigation.spots[0]
+    if spot_cfg.spot is None:
+        print(f"Spot {spot_cfg.name} no tiene coordenadas de destino")
+        return
+
+    print(f"Destino: {spot_cfg.name} ({spot_cfg.spot.x}, {spot_cfg.spot.y})")
     print("Navegando...\n")
 
-    success = nav.navigate_to_spot(wm)
+    success = nav.navigate_to(wm, spot_cfg.spot, spot_cfg.waypoints)
 
     if success:
         print("\nLlegó al spot!")

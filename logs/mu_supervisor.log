@@ -290,3 +290,177 @@
 2026-02-18 22:22:46 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
 2026-02-18 22:22:53 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
 2026-02-18 22:23:05 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:13:38 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:13:38 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:13:38 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:13:44 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:13:59 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-18 23:14:03 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-18 23:14:08 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-18 23:14:14 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:14:17 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:14:17 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:14:17 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:14:23 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:14:38 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-18 23:14:42 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-18 23:14:47 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-18 23:14:52 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:15:43 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:15:43 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:15:43 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:15:49 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:16:09 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-18 23:16:13 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-18 23:16:18 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-18 23:16:26 | INFO     | mu_supervisor | Clicking OK at (931, 621)
+2026-02-18 23:16:30 | INFO     | mu_supervisor | Clicking Connect at (1655, 973)
+2026-02-18 23:16:32 | INFO     | mu_supervisor | Game window appeared (HWND=2428592) — login complete
+2026-02-18 23:16:33 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=15)
+2026-02-18 23:16:33 | INFO     | mu_supervisor | Level 15 — active spot: Lorencia (until 50)
+2026-02-18 23:16:33 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-18 23:16:33 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-18 23:16:33 | WARNING  | mu_supervisor | Step 1: could not read coordinates
+2026-02-18 23:16:35 | INFO     | mu_supervisor | Step 2: pos=(140,133) target=(153,127) dist=14.3
+2026-02-18 23:16:37 | INFO     | mu_supervisor | Step 3: pos=(143,131) target=(153,127) dist=10.8
+2026-02-18 23:16:40 | INFO     | mu_supervisor | Step 4: pos=(146,129) target=(153,127) dist=7.3
+2026-02-18 23:16:42 | INFO     | mu_supervisor | Step 5: pos=(149,127) target=(153,127) dist=4.0
+2026-02-18 23:16:45 | INFO     | mu_supervisor | Step 6: pos=(152,126) target=(153,127) dist=1.4
+2026-02-18 23:16:47 | INFO     | mu_supervisor | Step 7: pos=(154,127) target=(153,127) dist=1.0
+2026-02-18 23:16:47 | INFO     | mu_supervisor | Reached waypoint 1!
+2026-02-18 23:16:47 | INFO     | mu_supervisor | Navigating to waypoint 2 (154, 127)
+2026-02-18 23:16:47 | INFO     | mu_supervisor | Step 8: pos=(154,127) target=(154,127) dist=0.0
+2026-02-18 23:16:47 | INFO     | mu_supervisor | Reached waypoint 2!
+2026-02-18 23:16:47 | INFO     | mu_supervisor | Navigating to spot (180, 127)
+2026-02-18 23:16:48 | INFO     | mu_supervisor | Step 9: pos=(154,127) target=(180,127) dist=26.0
+2026-02-18 23:16:50 | INFO     | mu_supervisor | Step 10: pos=(157,126) target=(180,127) dist=23.0
+2026-02-18 23:16:53 | INFO     | mu_supervisor | Step 11: pos=(162,126) target=(180,127) dist=18.0
+2026-02-18 23:16:55 | INFO     | mu_supervisor | Step 12: pos=(162,129) target=(180,127) dist=18.1
+2026-02-18 23:16:57 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:23:44 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:23:44 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-18 23:23:44 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:23:44 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:23:50 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:24:10 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-18 23:24:15 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-18 23:24:19 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-18 23:24:27 | INFO     | mu_supervisor | Clicking OK at (931, 621)
+2026-02-18 23:24:32 | INFO     | mu_supervisor | Clicking Connect at (1655, 973)
+2026-02-18 23:24:33 | INFO     | mu_supervisor | Game window appeared (HWND=37162552) — login complete
+2026-02-18 23:24:34 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=15)
+2026-02-18 23:24:34 | INFO     | mu_supervisor | Level 15 — active spot: Lorencia (until 50)
+2026-02-18 23:24:34 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-18 23:24:34 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-18 23:24:34 | WARNING  | mu_supervisor | Step 1: could not read coordinates
+2026-02-18 23:24:36 | INFO     | mu_supervisor | Step 2: pos=(166,127) target=(153,127) dist=13.0
+2026-02-18 23:24:38 | INFO     | mu_supervisor | Step 3: pos=(163,127) target=(153,127) dist=10.0
+2026-02-18 23:24:41 | INFO     | mu_supervisor | Step 4: pos=(160,127) target=(153,127) dist=7.0
+2026-02-18 23:24:43 | INFO     | mu_supervisor | Step 5: pos=(157,127) target=(153,127) dist=4.0
+2026-02-18 23:24:46 | INFO     | mu_supervisor | Step 6: pos=(154,127) target=(153,127) dist=1.0
+2026-02-18 23:24:46 | INFO     | mu_supervisor | Reached waypoint 1!
+2026-02-18 23:24:46 | INFO     | mu_supervisor | Navigating to waypoint 2 (154, 127)
+2026-02-18 23:24:46 | INFO     | mu_supervisor | Step 7: pos=(154,127) target=(154,127) dist=0.0
+2026-02-18 23:24:46 | INFO     | mu_supervisor | Reached waypoint 2!
+2026-02-18 23:24:46 | INFO     | mu_supervisor | Navigating to spot (180, 127)
+2026-02-18 23:24:46 | INFO     | mu_supervisor | Step 8: pos=(154,127) target=(180,127) dist=26.0
+2026-02-18 23:24:49 | INFO     | mu_supervisor | Step 9: pos=(157,126) target=(180,127) dist=23.0
+2026-02-18 23:24:51 | INFO     | mu_supervisor | Step 10: pos=(160,126) target=(180,127) dist=20.0
+2026-02-18 23:24:53 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:29:45 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:29:45 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-18 23:29:45 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:29:45 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:29:51 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:30:11 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-18 23:30:16 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-18 23:30:20 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-18 23:30:22 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:31:14 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:31:14 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-18 23:31:14 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:31:14 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:31:20 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:31:45 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-18 23:31:49 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-18 23:31:52 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-18 23:31:57 | INFO     | mu_supervisor | Clicking OK at (931, 621)
+2026-02-18 23:32:01 | INFO     | mu_supervisor | Clicking Connect at (1655, 973)
+2026-02-18 23:32:03 | INFO     | mu_supervisor | Game window appeared (HWND=22810144) — login complete
+2026-02-18 23:32:03 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=15)
+2026-02-18 23:32:03 | INFO     | mu_supervisor | Level 15 — active spot: Lorencia (until 50)
+2026-02-18 23:32:03 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-18 23:32:03 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-18 23:32:03 | WARNING  | mu_supervisor | Step 1: could not read coordinates
+2026-02-18 23:32:05 | INFO     | mu_supervisor | Step 2: pos=(163,126) target=(153,127) dist=10.0
+2026-02-18 23:32:08 | INFO     | mu_supervisor | Step 3: pos=(160,127) target=(153,127) dist=7.0
+2026-02-18 23:32:10 | INFO     | mu_supervisor | Step 4: pos=(157,127) target=(153,127) dist=4.0
+2026-02-18 23:32:13 | INFO     | mu_supervisor | Step 5: pos=(154,127) target=(153,127) dist=1.0
+2026-02-18 23:32:13 | INFO     | mu_supervisor | Reached waypoint 1!
+2026-02-18 23:32:13 | INFO     | mu_supervisor | Navigating to waypoint 2 (154, 127)
+2026-02-18 23:32:13 | INFO     | mu_supervisor | Step 6: pos=(154,127) target=(154,127) dist=0.0
+2026-02-18 23:32:13 | INFO     | mu_supervisor | Reached waypoint 2!
+2026-02-18 23:32:13 | INFO     | mu_supervisor | Navigating to spot (180, 127)
+2026-02-18 23:32:13 | INFO     | mu_supervisor | Step 7: pos=(154,127) target=(180,127) dist=26.0
+2026-02-18 23:32:15 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:34:34 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:34:34 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-18 23:34:34 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:34:34 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:34:40 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:35:05 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-18 23:35:10 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-18 23:35:12 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-18 23:35:17 | INFO     | mu_supervisor | Clicking OK at (931, 621)
+2026-02-18 23:35:22 | INFO     | mu_supervisor | Clicking Connect at (1655, 973)
+2026-02-18 23:35:25 | INFO     | mu_supervisor | Game window appeared (HWND=856418) — login complete
+2026-02-18 23:35:25 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=400 (current=400)
+2026-02-18 23:35:25 | INFO     | mu_supervisor | Level 400 >= reset level 400 — resetting
+2026-02-18 23:35:25 | INFO     | mu_supervisor | Sending /reset command
+2026-02-18 23:35:28 | INFO     | mu_supervisor | Waiting 6s for disconnect
+2026-02-18 23:35:34 | INFO     | mu_supervisor | Clicking Connect at (1655, 973)
+2026-02-18 23:35:34 | INFO     | mu_supervisor | Waiting 10s for reconnect
+2026-02-18 23:35:44 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=1)
+2026-02-18 23:35:44 | INFO     | mu_supervisor | Level 1 — active spot: Lorencia (until 50)
+2026-02-18 23:35:44 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-18 23:35:44 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-18 23:35:44 | WARNING  | mu_supervisor | Step 1: could not read coordinates
+2026-02-18 23:35:46 | WARNING  | mu_supervisor | Step 2: could not read coordinates
+2026-02-18 23:35:47 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:36:27 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:36:27 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-18 23:36:27 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:36:27 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:36:33 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:36:58 | INFO     | mu_supervisor | Selecting server at (792, 518)
+2026-02-18 23:37:02 | INFO     | mu_supervisor | Selecting sub-server at (957, 548)
+2026-02-18 23:37:05 | INFO     | mu_supervisor | Clicking password field at (931, 574)
+2026-02-18 23:37:10 | INFO     | mu_supervisor | Clicking OK at (931, 621)
+2026-02-18 23:37:14 | INFO     | mu_supervisor | Clicking Connect at (1655, 973)
+2026-02-18 23:37:18 | INFO     | mu_supervisor | Game window appeared (HWND=4132610) — login complete
+2026-02-18 23:37:18 | INFO     | mu_supervisor | Stat distributor initialized: baseline level=0 (current=0)
+2026-02-18 23:37:18 | INFO     | mu_supervisor | Level 0 — active spot: Lorencia (until 50)
+2026-02-18 23:37:18 | INFO     | mu_supervisor | Walking to Lorencia spot (180, 127)
+2026-02-18 23:37:18 | INFO     | mu_supervisor | Navigating to waypoint 1 (153, 127)
+2026-02-18 23:37:18 | WARNING  | mu_supervisor | Step 1: could not read coordinates
+2026-02-18 23:37:20 | WARNING  | mu_supervisor | Step 2: could not read coordinates
+2026-02-18 23:37:22 | WARNING  | mu_supervisor | Step 3: could not read coordinates
+2026-02-18 23:37:24 | WARNING  | mu_supervisor | Step 4: could not read coordinates
+2026-02-18 23:37:26 | WARNING  | mu_supervisor | Step 5: could not read coordinates
+2026-02-18 23:37:28 | WARNING  | mu_supervisor | Step 6: could not read coordinates
+2026-02-18 23:37:29 | WARNING  | mu_supervisor | Step 7: could not read coordinates
+2026-02-18 23:37:31 | WARNING  | mu_supervisor | Step 8: could not read coordinates
+2026-02-18 23:37:33 | WARNING  | mu_supervisor | Step 9: could not read coordinates
+2026-02-18 23:37:34 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:38:35 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:38:35 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-18 23:38:35 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:38:35 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:38:41 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:38:58 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)
+2026-02-18 23:39:02 | INFO     | mu_supervisor | Supervisor started — loop interval=30s
+2026-02-18 23:39:02 | WARNING  | mu_supervisor | Game window not found: No visible window matching 'HeroesMu'
+2026-02-18 23:39:02 | WARNING  | mu_supervisor | Game window not found — will attempt relaunch
+2026-02-18 23:39:02 | INFO     | mu_supervisor | Launching game from E:/HeroesMu/heroesMu.exe
+2026-02-18 23:39:08 | INFO     | mu_supervisor | Clicking Start button at (1375, 765)
+2026-02-18 23:39:25 | INFO     | mu_supervisor | Supervisor stopped by user (Ctrl+C)

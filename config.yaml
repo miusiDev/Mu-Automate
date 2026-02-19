@@ -25,18 +25,26 @@ launcher:
 navigation:
   # Región de pantalla donde se muestran las coordenadas X,Y del personaje
   coords_region: { x: 155, y: 30, w: 95, h: 25 }
-  # Waypoints intermedios antes de llegar al spot (para esquivar paredes)
-  waypoints:
-    - { x: 153, y: 127 }  # subir Y por el corredor
-    - { x: 154, y: 127 }  # cruzar el pasaje
-  # Coordenadas del spot de farmeo en Lorencia (tile X, Y)
-  spot: { x: 180, y: 127 }
-  # Se considera "llegó" si está a N tiles del spot
   tolerance: 1
-  # Pausa entre cada paso de movimiento (segundos)
   step_delay: 1.5
-  # Máximo de pasos antes de abortar navegación
   max_steps: 100
+  spots:
+    - name: "Lorencia"
+      until_level: 50
+      farm_action: "hold_right_click"
+      spot: { x: 180, y: 127 }
+      waypoints:
+        - { x: 153, y: 127 }
+        - { x: 154, y: 127 }
+    - name: "Devias4"
+      until_level: 150
+      farm_action: "middle_click"
+      warp_button: { x: 302, y: 608 }
+      spot: { x: 80, y: 176 }
+    - name: "LostTower6"
+      until_level: 400
+      farm_action: "middle_click"
+      warp_button: { x: 306, y: 621 }
 
 loop_interval_seconds: 30
 log_level: "INFO"

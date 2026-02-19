@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, List
 
 import yaml
@@ -50,10 +50,20 @@ class StatsConfig:
 
 
 @dataclass
+class FarmingSpot:
+    """A farming location with its level threshold and action."""
+    name: str
+    until_level: int
+    farm_action: str  # "hold_right_click" or "middle_click"
+    warp_button: Point | None = None
+    spot: Point | None = None
+    waypoints: List[Point] = field(default_factory=list)
+
+
+@dataclass
 class NavigationConfig:
     coords_region: Region
-    spot: Point
-    waypoints: List[Point]
+    spots: List[FarmingSpot]
     tolerance: int = 3
     step_delay: float = 1.5
     max_steps: int = 100
@@ -124,13 +134,26 @@ class Config:
             navigation = None
             nav_raw = raw.get("navigation")
             if nav_raw is not None:
-                waypoints = [
-                    Point(**wp) for wp in nav_raw.get("waypoints", [])
-                ]
+                spots = []
+                for spot_raw in nav_raw.get("spots", []):
+                    warp_btn = None
+                    if "warp_button" in spot_raw:
+                        warp_btn = Point(**spot_raw["warp_button"])
+                    spot_pt = None
+                    if "spot" in spot_raw:
+                        spot_pt = Point(**spot_raw["spot"])
+                    wps = [Point(**wp) for wp in spot_raw.get("waypoints", [])]
+                    spots.append(FarmingSpot(
+                        name=spot_raw["name"],
+                        until_level=spot_raw["until_level"],
+                        farm_action=spot_raw["farm_action"],
+                        warp_button=warp_btn,
+                        spot=spot_pt,
+                        waypoints=wps,
+                    ))
                 navigation = NavigationConfig(
                     coords_region=Region(**nav_raw["coords_region"]),
-                    spot=Point(**nav_raw["spot"]),
-                    waypoints=waypoints,
+                    spots=spots,
                     tolerance=nav_raw.get("tolerance", 3),
                     step_delay=nav_raw.get("step_delay", 1.5),
                     max_steps=nav_raw.get("max_steps", 100),
