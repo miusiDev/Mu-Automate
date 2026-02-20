@@ -31,6 +31,40 @@ VK_F4 = 0x73
 
 GetAsyncKeyState = ctypes.windll.user32.GetAsyncKeyState
 
+ALL_HOTKEYS = (VK_F2, VK_F3, VK_F4)
+
+
+class HotkeyDetector:
+    """Detect global hotkey presses using rising-edge detection on key state.
+
+    Uses bit 15 (0x8000 = currently pressed) instead of bit 0 (0x0001 =
+    pressed since last query) because bit 0 is unreliable across blocking
+    calls like input().
+    """
+
+    def __init__(self) -> None:
+        self._was_down: Dict[int, bool] = {vk: False for vk in ALL_HOTKEYS}
+
+    def poll(self) -> int | None:
+        """Return the VK code of a hotkey that was just pressed, or None."""
+        for vk in ALL_HOTKEYS:
+            is_down = bool(GetAsyncKeyState(vk) & 0x8000)
+            just_pressed = is_down and not self._was_down[vk]
+            self._was_down[vk] = is_down
+            if just_pressed:
+                return vk
+        return None
+
+    def drain(self) -> None:
+        """Re-read current state without triggering edges.
+
+        Call this after any blocking call (input, getpass) so that keys
+        held or pressed during the blocking call don't fire on resume.
+        """
+        for vk in ALL_HOTKEYS:
+            self._was_down[vk] = bool(GetAsyncKeyState(vk) & 0x8000)
+
+
 # Defaults for new server configs (non-launcher fields)
 DEFAULT_CONFIG_TEMPLATE: Dict[str, Any] = {
     "window_title": "HeroesMu",
@@ -57,20 +91,13 @@ DEFAULT_CONFIG_TEMPLATE: Dict[str, Any] = {
 }
 
 
-def key_just_pressed(vk: int) -> bool:
-    """Return True if the key was pressed since the last call."""
-    # Bit 0 = pressed since last query, bit 15 = currently down
-    state = GetAsyncKeyState(vk)
-    return bool(state & 0x0001)
-
-
 def wait_for_key(vk: int) -> None:
-    """Block until the given key is pressed."""
-    # Drain any stale press
-    GetAsyncKeyState(vk)
-    while True:
-        if key_just_pressed(vk):
-            return
+    """Block until the given key is pressed (rising edge)."""
+    # Wait for key to be released first (in case it's held)
+    while bool(GetAsyncKeyState(vk) & 0x8000):
+        time.sleep(0.05)
+    # Wait for press
+    while not bool(GetAsyncKeyState(vk) & 0x8000):
         time.sleep(0.05)
 
 
@@ -78,24 +105,29 @@ def record_steps() -> List[Dict[str, Any]]:
     """Record login steps interactively, returning raw step dicts."""
     steps: List[Dict[str, Any]] = []
     timestamps: List[float] = []
+    detector = HotkeyDetector()
 
     print("\n[Grabando] Presiona F2 en cada boton, F3 para campos de texto, F4 para terminar...\n")
 
-    # Drain any pending key states
-    for vk in (VK_F2, VK_F3, VK_F4):
-        GetAsyncKeyState(vk)
+    detector.drain()
 
     while True:
         time.sleep(0.05)
 
-        if key_just_pressed(VK_F4):
+        vk = detector.poll()
+        if vk is None:
+            continue
+
+        if vk == VK_F4:
             print("  [F4] Listo!\n")
             break
 
-        if key_just_pressed(VK_F2):
+        if vk == VK_F2:
             x, y = pyautogui.position()
             now = time.time()
+            print(f"  [F2] Capturado ({x}, {y})")
             label = input(f"  Step {len(steps) + 1}: CLICK en ({x}, {y})  —  Label: ").strip() or f"Step {len(steps) + 1}"
+            detector.drain()
             steps.append({
                 "action": "click",
                 "label": label,
@@ -103,11 +135,13 @@ def record_steps() -> List[Dict[str, Any]]:
             })
             timestamps.append(now)
 
-        if key_just_pressed(VK_F3):
+        elif vk == VK_F3:
             x, y = pyautogui.position()
             now = time.time()
+            print(f"  [F3] Capturado ({x}, {y})")
             label = input(f"  Step {len(steps) + 1}: PASTE en ({x}, {y})  —  Label: ").strip() or f"Step {len(steps) + 1}"
             text = getpass.getpass("    Texto a pegar: ")
+            detector.drain()
             steps.append({
                 "action": "paste",
                 "label": label,

@@ -1,0 +1,133 @@
+window_title: '[Mu] Abysmal'
+tesseract_path: E:/Tesseract-OCR/tesseract.exe
+ocr_regions:
+  level:
+    x: 580
+    y: 460
+    w: 80
+    h: 20
+  experience:
+    x: 580
+    y: 480
+    w: 120
+    h: 20
+stats:
+  interval_levels: 50
+  points_per_level: 5
+  distribution:
+    str: 0.1
+    agi: 0.3
+    vit: 0.1
+    ene: 0.5
+  stat_commands:
+    str: "/s"
+    agi: "/a"
+    vit: "/v"
+    ene: "/e"
+  points_region:
+    x: 1443
+    y: 135
+    w: 41
+    h: 13
+reset_level: 400
+reset_needs_reconnect: false
+helper_win32: true
+level_up_dismiss: 9
+launcher:
+  exe_path: E:\Mu Abysmal\MUOnline\MUOnline.exe
+  launcher_window_title: 'Mu DMG'
+  connect_button:
+    x: 1658
+    y: 980
+  login_steps:
+  - action: click
+    label: Start Launcher
+    point:
+      x: 1304
+      y: 819
+    wait_after: 0
+  - action: click
+    label: Minimize Launcher
+    point:
+      x: 1346
+      y: 187
+    wait_after: 10
+  - action: click
+    label: Server Click
+    point:
+      x: 784
+      y: 471
+    wait_after: 4
+  - action: click
+    label: Realm Click
+    point:
+      x: 961
+      y: 473
+    wait_after: 2
+  - action: paste
+    label: User Paste
+    point:
+      x: 969
+      y: 656
+    text: Miusi
+    wait_after: 1
+  - action: paste
+    label: Password Paste
+    point:
+      x: 996
+      y: 683
+    text: ha9xng2q
+    wait_after: 1
+  - action: click
+    label: Boton Ok
+    point:
+      x: 975
+      y: 732
+    wait_after: 2
+  - action: click
+    label: Connect character
+    point:
+      x: 1655
+      y: 975
+    wait_after: 2
+post_login_steps:
+  - action: click
+    label: "Skill bar"
+    point: { x: 960, y: 959 }
+    wait_after: 1
+  - action: click
+    label: "Evil Spirit"
+    point: { x: 918, y: 865 }
+    wait_after: 1
+
+navigation:
+  coords_region:
+    x: 65
+    y: 29
+    w: 192
+    h: 23
+  coords_filter: "threshold"
+  tolerance: 2
+  step_delay: 1.5
+  max_steps: 100
+  spots:
+    - name: "Lorencia"
+      until_level: 10
+      farm_action: "hold_right_click"
+      spot: { x: 180, y: 127 }
+      waypoints:
+        - { x: 153, y: 127 }
+        - { x: 154, y: 127 }
+    - name: "Elveland3"
+      until_level: 100
+      farm_action: "middle_click"
+      warp_command: "/warp Elveland3"
+    - name: "Aida"
+      until_level: 400
+      farm_action: "middle_click"
+      warp_command: "/warp aida1"
+      spot: { x: 99, y: 10 }
+      waypoints:
+        - { x: 84, y: 8 }
+loop_interval_seconds: 30
+log_level: INFO

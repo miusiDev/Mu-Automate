@@ -1,0 +1,9 @@
+pyautogui
+pydirectinput
+pyperclip
+pytesseract
+opencv-python
+numpy
+pywin32
+PyYAML
+colorlog

@@ -4,16 +4,22 @@ from __future__ import annotations
 
 import enum
 import logging
+import re
 import time
 
 import pyautogui
+import pydirectinput
 
 from .config import Config, FarmingSpot
 from .constants import (
+    FARM_CHECK_INTERVAL,
+    HELPER_RETRY_TIMEOUT,
+    HELPER_STUCK_TIMEOUT,
     LAUNCH_FAILURE_PAUSE_SECONDS,
     OCR_FAILURE_PAUSE_SECONDS,
     POST_RECONNECT_DELAY,
     RESET_DISCONNECT_DELAY,
+    WARP_TRAVEL_DELAY,
 )
 from .exceptions import (
     DistributionError,
@@ -69,6 +75,7 @@ class Supervisor:
         self._error_pause_seconds: float = 0
         self._initialized = False
         self._current_level: int | None = None
+        self._popup_dismissed = False
 
     def run(self) -> None:
         """Run the supervisor loop indefinitely."""
@@ -123,6 +130,7 @@ class Supervisor:
         try:
             self._launcher.launch_and_login()
             self._initialized = False
+            self._popup_dismissed = False
             self._state = State.CHECK_GAME_ALIVE
         except LaunchError as exc:
             logger.error("Launch failed: %s", exc)
@@ -152,6 +160,9 @@ class Supervisor:
         if not self._initialized:
             self._stats.initialize_from_level(level)
             self._initialized = True
+
+            # Execute post-login steps (e.g. select skill)
+            self._run_post_login_steps()
 
             # After reset (or fresh start at level 1), distribute all points
             if level <= 1:
@@ -196,10 +207,39 @@ class Supervisor:
             return
 
         try:
+            # 0. Check if we're already on the right map (save zen on warp)
+            already_at_spot = False
+            location_text = self._ocr.read_location_text(self._wm)
+            if location_text and spot.name.lower() in location_text.lower():
+                logger.info(
+                    "Already at %s (read: %r) — skipping warp",
+                    spot.name, location_text,
+                )
+                already_at_spot = True
+
             # 1. Warp to map if needed
-            if spot.warp_button is not None:
-                logger.info("Warping to %s", spot.name)
-                self._navigator.warp_to(self._wm, spot.warp_button)
+            if not already_at_spot:
+                if spot.warp_command is not None:
+                    logger.info("Warping to %s via command: %s", spot.name, spot.warp_command)
+                    send_chat_command(spot.warp_command, self._wm)
+                    time.sleep(WARP_TRAVEL_DELAY)
+                elif spot.warp_button is not None:
+                    logger.info("Warping to %s via M menu", spot.name)
+                    self._navigator.warp_to(self._wm, spot.warp_button)
+
+            # 1.5. Verify warp succeeded
+            if not already_at_spot and (spot.warp_command or spot.warp_button):
+                location_text = self._ocr.read_location_text(self._wm)
+                # Strip trailing digits from spot name for comparison:
+                # "Elveland3" → "Elveland", "Aida1" → "Aida", "LostTower6" → "LostTower"
+                map_base = re.sub(r"\d+$", "", spot.name).lower()
+                if not location_text or map_base not in location_text.lower():
+                    logger.warning(
+                        "Warp to %s failed (location: %r) — will retry",
+                        spot.name, location_text,
+                    )
+                    self._state = State.READ_STATUS
+                    return
 
             # 2. Walk to spot if needed
             if spot.spot is not None:
@@ -216,11 +256,14 @@ class Supervisor:
                     self._error_pause_seconds = 60
                     return
 
-            # 3. Farm at the spot
+            # 3. Farm at the spot (small delay for map to finish loading)
+            time.sleep(2)
             if spot.farm_action == "hold_right_click":
                 self._farm_hold_right_click(spot)
             elif spot.farm_action == "middle_click":
-                self._farm_middle_click(spot)
+                if not self._farm_middle_click(spot):
+                    # Stagnation — stay in NAVIGATE_AND_FARM to re-warp
+                    return
 
         except GameWindowError:
             self._state = State.CHECK_GAME_ALIVE
@@ -245,26 +288,28 @@ class Supervisor:
         self._state = State.WAIT
 
     def _do_reset(self) -> None:
-        """Send /reset, wait for disconnect, and reconnect."""
+        """Send /reset and optionally wait for disconnect + reconnect."""
         try:
             logger.info("Sending /reset command")
             send_chat_command("/reset", self._wm)
 
-            logger.info("Waiting %ds for disconnect", RESET_DISCONNECT_DELAY)
-            time.sleep(RESET_DISCONNECT_DELAY)
+            if self._config.reset_needs_reconnect:
+                logger.info("Waiting %ds for disconnect", RESET_DISCONNECT_DELAY)
+                time.sleep(RESET_DISCONNECT_DELAY)
 
-            # Click connect to re-enter the game
-            lc = self._config.launcher
-            logger.info(
-                "Clicking Connect at (%d, %d)",
-                lc.connect_button.x, lc.connect_button.y,
-            )
-            pyautogui.click(lc.connect_button.x, lc.connect_button.y)
+                # Click connect to re-enter the game
+                lc = self._config.launcher
+                logger.info(
+                    "Clicking Connect at (%d, %d)",
+                    lc.connect_button.x, lc.connect_button.y,
+                )
+                pyautogui.click(lc.connect_button.x, lc.connect_button.y)
 
-            logger.info("Waiting %ds for reconnect", POST_RECONNECT_DELAY)
-            time.sleep(POST_RECONNECT_DELAY)
+                logger.info("Waiting %ds for reconnect", POST_RECONNECT_DELAY)
+                time.sleep(POST_RECONNECT_DELAY)
 
             self._initialized = False
+            self._popup_dismissed = False
             self._state = State.CHECK_GAME_ALIVE
 
         except GameWindowError:
@@ -279,6 +324,30 @@ class Supervisor:
         logger.info("Error pause: sleeping %ds before retry", self._error_pause_seconds)
         time.sleep(self._error_pause_seconds)
         self._state = State.CHECK_GAME_ALIVE
+
+    # ------------------------------------------------------------------
+    # Post-login setup
+    # ------------------------------------------------------------------
+
+    def _run_post_login_steps(self) -> None:
+        """Execute post-login clicks (e.g. select skill from bar)."""
+        steps = self._config.post_login_steps
+        if not steps:
+            return
+
+        logger.info("Running %d post-login step(s)", len(steps))
+        self._wm.focus_window()
+
+        for step in steps:
+            logger.info("Post-login: %s at (%d, %d)", step.label, step.point.x, step.point.y)
+            pyautogui.moveTo(step.point.x, step.point.y)
+            pyautogui.mouseDown()
+            time.sleep(0.2)
+            pyautogui.mouseUp()
+            if step.wait_after > 0:
+                time.sleep(step.wait_after)
+
+        logger.info("Post-login steps complete")
 
     # ------------------------------------------------------------------
     # Farming helpers
@@ -321,6 +390,7 @@ class Supervisor:
                     continue
 
                 self._current_level = level
+                self._check_level_up_popup(level)
                 logger.info(
                     "Farming at %s — level %d / %d",
                     spot.name, level, spot.until_level,
@@ -333,21 +403,80 @@ class Supervisor:
             pyautogui.mouseUp(button="right")
             logger.info("Released right-click")
 
-    def _farm_middle_click(self, spot: FarmingSpot) -> None:
-        """Middle-click to activate MU Helper and wait until reaching the spot's level."""
-        cx, cy = self._wm.get_window_center()
+    def _check_level_up_popup(self, level: int) -> None:
+        """Dismiss level-up popup by clicking screen center if level crossed threshold.
+
+        Does NOT call focus_window() to avoid sending ALT during farming.
+        Releases right-click briefly if held, clicks center, then re-presses.
+        """
+        threshold = self._config.level_up_dismiss
+        if threshold is None or self._popup_dismissed:
+            return
+        if level > threshold:
+            cx, cy = self._wm.get_window_center()
+            logger.info("Level %d > %d — dismissing level-up popup", level, threshold)
+
+            # Release right-click temporarily to avoid interference
+            pyautogui.mouseUp(button="right")
+            time.sleep(0.3)
+
+            pyautogui.click(cx, cy)
+            time.sleep(1.0)
+
+            # Re-press right-click so farming continues
+            pyautogui.moveTo(cx, cy)
+            pyautogui.mouseDown(button="right")
+
+            self._popup_dismissed = True
+
+    def _activate_helper(self) -> None:
+        """Activate MU Helper via helper_button click or middle click."""
         self._wm.focus_window()
-        pyautogui.moveTo(cx, cy)
-        pyautogui.mouseDown(button="middle")
-        time.sleep(0.2)
-        pyautogui.mouseUp(button="middle")
+        time.sleep(0.3)
+
+        hb = self._config.helper_button
+        if hb is not None:
+            pyautogui.moveTo(hb.x, hb.y)
+            time.sleep(0.15)
+            pyautogui.mouseDown()
+            time.sleep(0.2)
+            pyautogui.mouseUp()
+        else:
+            cx, cy = self._wm.get_window_center()
+            pyautogui.moveTo(cx, cy)
+            time.sleep(0.15)
+            pyautogui.mouseDown(button="middle")
+            time.sleep(0.05)
+            pyautogui.mouseUp(button="middle")
+
+    def _farm_middle_click(self, spot: FarmingSpot) -> bool:
+        """Middle-click to activate MU Helper and wait until reaching the spot's level.
+
+        Returns True if the spot's target level was reached, False if stagnation
+        was detected (caller should re-navigate).
+        """
+        # Mark popup as handled so the farming loop's _check_level_up_popup
+        # won't left-click center and accidentally close MU Helper.
+        if not self._popup_dismissed and self._config.level_up_dismiss is not None:
+            if self._current_level and self._current_level > self._config.level_up_dismiss:
+                logger.info("Skipping popup dismiss (will be handled by MU Helper)")
+                self._popup_dismissed = True
+
+        # Extra settle time — game may not accept middle click right after
+        # warp/navigation until it finishes loading.
+        time.sleep(3)
+        self._activate_helper()
         logger.info(
             "Activated MU Helper at %s — farming until level %d",
             spot.name, spot.until_level,
         )
 
+        last_level: int | None = None
+        last_level_change_time = time.monotonic()
+        helper_retried = False
+
         while True:
-            time.sleep(self._config.loop_interval_seconds)
+            time.sleep(FARM_CHECK_INTERVAL)
 
             if not self._wm.is_window_alive():
                 raise GameWindowError("Game window lost during farming")
@@ -362,10 +491,38 @@ class Supervisor:
                 continue
 
             self._current_level = level
+            self._check_level_up_popup(level)
+            now = time.monotonic()
+
+            # Track level changes
+            if last_level is None or level != last_level:
+                last_level = level
+                last_level_change_time = now
+                helper_retried = False
+
+            stagnation = now - last_level_change_time
+
             logger.info(
-                "Farming at %s (MU Helper) — level %d / %d",
-                spot.name, level, spot.until_level,
+                "Farming at %s (MU Helper) — level %d / %d (stale %.0fs)",
+                spot.name, level, spot.until_level, stagnation,
             )
+
+            # Stagnation: re-enable MU Helper once
+            if stagnation >= HELPER_RETRY_TIMEOUT and not helper_retried:
+                logger.warning(
+                    "Level stagnant for %.0fs — re-enabling MU Helper",
+                    stagnation,
+                )
+                self._activate_helper()
+                helper_retried = True
+
+            # Stagnation: give up and re-navigate
+            if stagnation >= HELPER_STUCK_TIMEOUT:
+                logger.warning(
+                    "Level stagnant for %.0fs — assuming stuck/dead, re-navigating",
+                    stagnation,
+                )
+                return False
 
             # Distribute stats while helper is active (chat doesn't interrupt it)
             if self._stats.should_distribute(level):
@@ -376,4 +533,4 @@ class Supervisor:
 
             if level >= spot.until_level:
                 logger.info("Reached level %d — leaving %s", level, spot.name)
-                break
+                return True

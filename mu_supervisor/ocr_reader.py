@@ -34,6 +34,9 @@ class OcrReader:
         self._coords_region: Region | None = (
             config.navigation.coords_region if config.navigation else None
         )
+        self._coords_filter: str = (
+            config.navigation.coords_filter if config.navigation else "golden"
+        )
         self._consecutive_failures: int = 0
 
     @property
@@ -102,11 +105,16 @@ class OcrReader:
 
     @staticmethod
     def _read_level_from_title(wm: WindowManager) -> Optional[int]:
-        """Parse level from window title like 'Level: [400]'."""
+        """Parse level from window title.
+
+        Supports formats:
+          - 'Level: [400]'       (HeroesMu)
+          - 'Level: 1'           (Abysmal)
+        """
         title = wm.get_window_title()
         if not title:
             return None
-        match = re.search(r"(?<!Master )Level:\s*\[(\d+)\]", title)
+        match = re.search(r"(?<!Master )Level:\s*\[?(\d+)\]?", title)
         if not match:
             return None
         level = int(match.group(1))
@@ -116,6 +124,28 @@ class OcrReader:
     def read_experience(self, wm: WindowManager) -> Optional[int]:
         """Capture the experience region and return the current experience."""
         return self._read_region(wm, self._regions.experience, "experience")
+
+    def read_location_text(self, wm: "WindowManager") -> Optional[str]:
+        """Read the raw text from the coordinates region (map name + coords)."""
+        if self._coords_region is None:
+            return None
+
+        try:
+            raw_img = wm.capture_region(self._coords_region)
+            h, w = raw_img.shape[:2]
+            raw_img = cv2.resize(raw_img, (w * 3, h * 3), interpolation=cv2.INTER_CUBIC)
+
+            if self._coords_filter == "threshold":
+                gray = cv2.cvtColor(raw_img, cv2.COLOR_BGR2GRAY)
+                _, filtered = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
+                filtered = cv2.bitwise_not(filtered)
+            else:
+                filtered = self.filter_golden_text(raw_img)
+
+            return self._ocr_text(filtered) or None
+        except Exception as exc:
+            logger.warning("read_location_text failed: %s", exc)
+            return None
 
     def read_coordinates(self, wm: "WindowManager") -> Optional[Tuple[int, int]]:
         """Capture the coordinate region and parse X, Y game coordinates.
@@ -133,28 +163,33 @@ class OcrReader:
             h, w = raw_img.shape[:2]
             raw_img = cv2.resize(raw_img, (w * 3, h * 3), interpolation=cv2.INTER_CUBIC)
 
-            # Try golden-text filter first, fall back to simple threshold
-            filtered = self.filter_golden_text(raw_img)
-            text = self._ocr_text(filtered)
-
-            if not text:
+            # Apply configured filter
+            if self._coords_filter == "threshold":
                 gray = cv2.cvtColor(raw_img, cv2.COLOR_BGR2GRAY)
                 _, filtered = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
-                text = self._ocr_text(filtered)
+                filtered = cv2.bitwise_not(filtered)
+            else:
+                filtered = self.filter_golden_text(raw_img)
+
+            text = self._ocr_text(filtered)
 
             if not text:
                 logger.debug("read_coordinates: OCR returned empty text")
                 return None
 
-            # Apply char fixes then search for two digit groups
-            fixed = "".join(OCR_CHAR_FIXES.get(ch, ch) for ch in text)
-            match = re.search(NAVIGATION_COORD_PATTERN, fixed)
+            # Search for comma-separated coordinate pair in the full text
+            match = re.search(NAVIGATION_COORD_PATTERN, text)
             if not match:
                 logger.debug("read_coordinates: no coordinate pattern in %r", text)
                 return None
 
-            x, y = int(match.group(1)), int(match.group(2))
-            logger.debug("read_coordinates: (%d, %d)", x, y)
+            raw_x, raw_y = match.group(1), match.group(2)
+            # Apply char fixes only to the matched digit groups
+            fix_x = "".join(OCR_CHAR_FIXES.get(ch, ch) for ch in raw_x)
+            fix_y = "".join(OCR_CHAR_FIXES.get(ch, ch) for ch in raw_y)
+            x = int(re.sub(r"\D", "", fix_x))
+            y = int(re.sub(r"\D", "", fix_y))
+            logger.debug("read_coordinates: (%d, %d) [raw: %r]", x, y, text)
             return (x, y)
 
         except Exception as exc:
@@ -166,7 +201,11 @@ class OcrReader:
         """Run Tesseract on a pre-processed image and return raw text."""
         custom_config = (
             f"--psm {PSM_SINGLE_LINE} "
-            "-c tessedit_char_whitelist=0123456789OoQDIl|iSsBbGgZzTA,: "
+            "-c tessedit_char_whitelist="
+            "0123456789"
+            "abcdefghijklmnopqrstuvwxyz"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "(),: "
         )
         return pytesseract.image_to_string(image, config=custom_config).strip()
 

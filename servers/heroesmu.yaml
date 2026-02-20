@@ -9,6 +9,7 @@ stats:
   interval_levels: 50
   points_per_level: 5
   distribution: { str: 0.1, agi: 0.3, vit: 0.1, ene: 0.5 }
+  points_region: { x: 406, y: 362, w: 65, h: 15 }
 
 reset_level: 400
 

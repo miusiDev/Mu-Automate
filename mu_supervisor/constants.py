@@ -53,7 +53,7 @@ WEB_RESET_PAUSE_SECONDS = 600  # 10 minutes
 LAUNCH_FAILURE_PAUSE_SECONDS = 600  # 10 minutes
 
 # Timing delays for keyboard/command interaction
-CHAT_OPEN_DELAY = 0.3
+CHAT_OPEN_DELAY = 1.0
 COMMAND_SEND_DELAY = 1.0
 TYPE_CHAR_DELAY = 0.05
 
@@ -64,7 +64,7 @@ CHAR_SELECT_TIMEOUT = 30
 
 # Navigation constants
 NAVIGATION_CLICK_RADIUS = 200  # pixels from window center for movement clicks
-NAVIGATION_COORD_PATTERN = r"(\d{1,3})\D+(\d{1,3})"  # matches "X , Y" or "X: Y" etc.
+NAVIGATION_COORD_PATTERN = r"(\d{1,3})\s*,\s*(\d{1,3})"  # matches "X , Y" — requires comma separator
 
 # Warp menu timing
 WARP_MENU_DELAY = 1.0  # delay after pressing M to open warp menu
@@ -73,3 +73,8 @@ WARP_TRAVEL_DELAY = 3.0  # delay after clicking warp destination
 # Reset timing
 RESET_DISCONNECT_DELAY = 8  # seconds to wait after /reset before reconnecting
 POST_RECONNECT_DELAY = 10  # seconds to wait after clicking Connect
+
+# MU Helper stagnation detection
+HELPER_RETRY_TIMEOUT = 10   # seconds before re-enabling MU Helper
+HELPER_STUCK_TIMEOUT = 90   # seconds before giving up and re-navigating (must be > RETRY)
+FARM_CHECK_INTERVAL = 5     # polling interval during middle_click farming

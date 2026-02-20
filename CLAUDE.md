@@ -21,6 +21,7 @@ python run.py my_config.yaml   # custom config path
 python tools/calibrate_coords.py   # capture coords region, show OCR result
 python tools/test_navigation.py    # test walk-to-spot from current position
 python tools/test_directions.py    # click 4 screen directions, report coord deltas
+python -c "import pyautogui; pyautogui.displayMousePosition()"  # live mouse X,Y (Ctrl+C to stop)
 ```
 
 These require the game to be running and visible on screen.

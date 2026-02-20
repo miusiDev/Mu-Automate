@@ -1,5 +1,7 @@
 """Calibration tool: capture the coords region and show what OCR reads."""
 
+import atexit
+import ctypes
 import sys
 import os
 
@@ -11,8 +13,20 @@ from mu_supervisor.window_manager import WindowManager
 from mu_supervisor.ocr_reader import OcrReader
 
 
+def _release_modifier_keys() -> None:
+    """Release ALT, CTRL, SHIFT in case they got stuck."""
+    keybd_event = ctypes.windll.user32.keybd_event
+    KEYEVENTF_KEYUP = 0x0002
+    for vk in (0x12, 0x10, 0x11):  # ALT, SHIFT, CTRL
+        keybd_event(vk, 0, KEYEVENTF_KEYUP, 0)
+
+
+atexit.register(_release_modifier_keys)
+
+
 def main() -> None:
-    config = Config.from_yaml("config.yaml")
+    config_path = sys.argv[1] if len(sys.argv) > 1 else "config.yaml"
+    config = Config.from_yaml(config_path)
     wm = WindowManager(config.window_title)
     ocr = OcrReader(config)
 

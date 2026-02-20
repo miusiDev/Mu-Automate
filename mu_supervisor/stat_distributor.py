@@ -4,16 +4,21 @@ from __future__ import annotations
 
 import logging
 import math
+import re
 import time
 
+import cv2
+import pyautogui
 import pyperclip
 import pydirectinput
+import pytesseract
 
-from .config import Config
+from .config import Config, Region
 from .constants import (
     CHAT_OPEN_DELAY,
     COMMAND_SEND_DELAY,
     MAX_POINTS_PER_COMMAND,
+    PSM_SINGLE_LINE,
     STAT_COMMANDS,
 )
 from .exceptions import DistributionError
@@ -30,6 +35,9 @@ class StatDistributor:
         self._points_per_level = config.stats.points_per_level
         self._distribution = config.stats.distribution
         self._reset_level = config.reset_level
+        self._points_region: Region | None = config.stats.points_region
+        self._tesseract_path = config.tesseract_path
+        self._stat_commands = config.stats.stat_commands or STAT_COMMANDS
         self._last_distributed_level: int = 0
 
     @property
@@ -55,14 +63,13 @@ class StatDistributor:
         return (current_level - self._last_distributed_level) >= self._interval
 
     def distribute(self, current_level: int, wm: WindowManager) -> None:
-        """Calculate and send stat-add commands for the accumulated levels."""
-        levels_gained = current_level - self._last_distributed_level
-        total_points = levels_gained * self._points_per_level
+        """Read available points from character screen and send stat-add commands."""
+        total_points = self._read_available_points(wm)
 
-        logger.info(
-            "Distributing stats: %d levels gained × %d pts = %d total points",
-            levels_gained, self._points_per_level, total_points,
-        )
+        if total_points <= 0:
+            logger.info("No stat points to distribute")
+            self._last_distributed_level = current_level
+            return
 
         wm.focus_window()
 
@@ -74,7 +81,7 @@ class StatDistributor:
             if points <= 0:
                 continue
 
-            command = STAT_COMMANDS.get(stat_key)
+            command = self._stat_commands.get(stat_key)
             if command is None:
                 logger.warning("Unknown stat key %r, skipping", stat_key)
                 continue
@@ -90,14 +97,14 @@ class StatDistributor:
     def distribute_for_reset(self, wm: WindowManager) -> None:
         """Distribute all stat points after a reset (character at level 1).
 
-        Uses reset_level * points_per_level as the total pool and waits
+        Reads available points from the character screen (C key) and waits
         2 seconds between each /add command.
         """
-        total_points = self._reset_level * self._points_per_level
-        logger.info(
-            "Post-reset distribution: %d points (%d levels x %d pts/lvl)",
-            total_points, self._reset_level, self._points_per_level,
-        )
+        total_points = self._read_available_points(wm)
+
+        if total_points <= 0:
+            logger.info("No stat points to distribute")
+            return
 
         wm.focus_window()
 
@@ -110,7 +117,7 @@ class StatDistributor:
             if points <= 0:
                 continue
 
-            command = STAT_COMMANDS.get(stat_key)
+            command = self._stat_commands.get(stat_key)
             if command is None:
                 logger.warning("Unknown stat key %r, skipping", stat_key)
                 continue
@@ -122,6 +129,42 @@ class StatDistributor:
             self._send_stat_points(command, points, wm)
 
         logger.info("Post-reset distribution complete")
+
+    def _read_available_points(self, wm: WindowManager) -> int:
+        """Open character screen (C), OCR the points region, close (C).
+
+        Returns the number of available stat points.
+        """
+        wm.focus_window()
+
+        # Open character screen
+        pydirectinput.press("c")
+        time.sleep(0.5)
+
+        try:
+            raw_img = wm.capture_region(self._points_region)
+
+            # Scale up for better OCR
+            h, w = raw_img.shape[:2]
+            raw_img = cv2.resize(raw_img, (w * 3, h * 3), interpolation=cv2.INTER_CUBIC)
+
+            gray = cv2.cvtColor(raw_img, cv2.COLOR_BGR2GRAY)
+            _, thresh = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
+
+            pytesseract.pytesseract.tesseract_cmd = self._tesseract_path
+            text = pytesseract.image_to_string(
+                thresh,
+                config=f"--psm {PSM_SINGLE_LINE} -c tessedit_char_whitelist=0123456789",
+            ).strip()
+
+            digits = re.sub(r"\D", "", text)
+            points = int(digits) if digits else 0
+            logger.info("Read available points from character screen: %d", points)
+            return points
+        finally:
+            # Close character screen
+            pydirectinput.press("c")
+            time.sleep(0.3)
 
     # ------------------------------------------------------------------
     # Internal
@@ -150,12 +193,14 @@ def send_chat_command(text: str, wm: WindowManager) -> None:
     pydirectinput.press("enter")
     time.sleep(CHAT_OPEN_DELAY)
 
-    # Paste via clipboard (avoids pydirectinput issues with / on non-US layouts)
+    # Copy to clipboard right before pasting to avoid anything overwriting it
     pyperclip.copy(text)
-    pydirectinput.keyDown("ctrl")
-    pydirectinput.press("v")
-    pydirectinput.keyUp("ctrl")
     time.sleep(0.1)
+
+    # Paste via clipboard — use pyautogui.hotkey for reliable Ctrl+V
+    # (pydirectinput keyDown/press combo drops Ctrl in DirectX games, sending bare "V" which opens inventory)
+    pyautogui.hotkey("ctrl", "v")
+    time.sleep(0.3)
 
     # Send
     pydirectinput.press("enter")

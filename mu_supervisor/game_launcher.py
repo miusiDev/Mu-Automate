@@ -11,6 +11,8 @@ from typing import Optional
 import pyautogui
 import pyperclip
 import pydirectinput
+import win32con
+import win32gui
 
 from .config import Config
 from .constants import (
@@ -119,6 +121,11 @@ class GameLauncher:
         if game_hwnd is None:
             raise LaunchError("Game window did not appear after login sequence")
 
+        # Minimize the launcher so the game window is visible
+        if launcher_hwnd is not None:
+            win32gui.ShowWindow(launcher_hwnd, win32con.SW_MINIMIZE)
+            logger.debug("Minimized launcher window")
+
         # Store the handle so the supervisor recognises the window on next tick
         self._wm._hwnd = game_hwnd
         time.sleep(2)  # let the title update with level info
@@ -131,7 +138,6 @@ class GameLauncher:
     @staticmethod
     def _wait_for_window(title: str, timeout: float, exact: bool = False) -> Optional[int]:
         """Poll for a window matching *title* to appear within *timeout* seconds."""
-        import win32gui
 
         deadline = time.time() + timeout
         while time.time() < deadline:
