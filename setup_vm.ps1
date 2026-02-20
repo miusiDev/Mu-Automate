@@ -9,12 +9,10 @@ $ErrorActionPreference = "Stop"
 # --- Configuracion -----------------------------------------------------------
 $PYTHON_VERSION   = "3.13.2"
 $PYTHON_URL       = "https://www.python.org/ftp/python/$PYTHON_VERSION/python-$PYTHON_VERSION-amd64.exe"
-$TESSERACT_URL    = "https://github.com/UB-Mannheim/tesseract/releases/download/v5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe"
 $GIT_URL          = "https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.2/Git-2.47.1.2-64-bit.exe"
 $DXRUNTIME_URL    = "https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe"
 $VCREDIST_URL     = "https://aka.ms/vs/17/release/vc_redist.x64.exe"
 $INSTALL_DIR      = "E:\MuAutomate"
-$TESSERACT_DIR    = "C:\Tesseract-OCR"
 $REPO_URL         = "https://github.com/miusiDev/Mu-Automate.git"
 
 $DOWNLOADS        = "$env:TEMP\mu_automate_setup"
@@ -94,21 +92,7 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
 }
 
 # =============================================================================
-# 4. Tesseract OCR
-# =============================================================================
-Write-Step "Instalando Tesseract OCR en $TESSERACT_DIR"
-$tessExe = "$DOWNLOADS\tesseract-installer.exe"
-Download-File $TESSERACT_URL $tessExe
-
-if (-not (Test-Path "$TESSERACT_DIR\tesseract.exe")) {
-    Start-Process -FilePath $tessExe -ArgumentList "/S", "/D=$TESSERACT_DIR" -Wait -NoNewWindow
-    Write-Host "  Tesseract instalado en $TESSERACT_DIR"
-} else {
-    Write-Host "  Tesseract ya esta instalado."
-}
-
-# =============================================================================
-# 5. Clonar repositorio
+# 4. Clonar repositorio
 # =============================================================================
 Write-Step "Clonando repositorio en $INSTALL_DIR"
 if (-not (Test-Path "$INSTALL_DIR\.git")) {
@@ -121,7 +105,7 @@ if (-not (Test-Path "$INSTALL_DIR\.git")) {
 }
 
 # =============================================================================
-# 6. Virtual environment + dependencias
+# 5. Virtual environment + dependencias
 # =============================================================================
 Write-Step "Creando virtual environment"
 Push-Location $INSTALL_DIR
@@ -146,7 +130,7 @@ print('Todas las dependencias OK')
 Pop-Location
 
 # =============================================================================
-# 7. Recordatorios finales
+# 6. Recordatorios finales
 # =============================================================================
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor Green
@@ -156,7 +140,7 @@ Write-Host ""
 Write-Host "Cosas que debes ajustar manualmente:" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "  1. Editar config.yaml (o servers/heroesmu.yaml):"
-Write-Host "     - tesseract_path: '$TESSERACT_DIR/tesseract.exe'"
+Write-Host "     - tesseract_path: ruta donde instalaste Tesseract"
 Write-Host "     - launcher.exe_path: ruta al .exe del juego"
 Write-Host "     - launcher.login_steps[3].text: tu password"
 Write-Host "     - Coordenadas de botones (dependen de la resolucion)"
