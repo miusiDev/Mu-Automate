@@ -14,7 +14,7 @@ $GIT_URL          = "https://github.com/git-for-windows/git/releases/download/v2
 $DXRUNTIME_URL    = "https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe"
 $VCREDIST_URL     = "https://aka.ms/vs/17/release/vc_redist.x64.exe"
 $INSTALL_DIR      = "E:\MuAutomate"
-$TESSERACT_DIR    = "E:\Tesseract-OCR"
+$TESSERACT_DIR    = "C:\Tesseract-OCR"
 $REPO_URL         = "https://github.com/miusiDev/Mu-Automate.git"
 
 $DOWNLOADS        = "$env:TEMP\mu_automate_setup"
