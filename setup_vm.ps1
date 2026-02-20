@@ -11,9 +11,11 @@ $PYTHON_VERSION   = "3.13.2"
 $PYTHON_URL       = "https://www.python.org/ftp/python/$PYTHON_VERSION/python-$PYTHON_VERSION-amd64.exe"
 $TESSERACT_URL    = "https://github.com/UB-Mannheim/tesseract/releases/download/v5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe"
 $GIT_URL          = "https://github.com/git-for-windows/git/releases/download/v2.47.1.windows.2/Git-2.47.1.2-64-bit.exe"
+$DXRUNTIME_URL    = "https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe"
+$VCREDIST_URL     = "https://aka.ms/vs/17/release/vc_redist.x64.exe"
 $INSTALL_DIR      = "E:\MuAutomate"
 $TESSERACT_DIR    = "E:\Tesseract-OCR"
-$REPO_URL         = "https://github.com/TU_USUARIO/mu-automate.git"  # <-- CAMBIAR
+$REPO_URL         = "https://github.com/miusiDev/Mu-Automate.git"
 
 $DOWNLOADS        = "$env:TEMP\mu_automate_setup"
 
@@ -23,13 +25,40 @@ function Download-File($url, $dest) {
     if (Test-Path $dest) { Write-Host "  Ya existe: $dest" ; return }
     Write-Host "  Descargando $url ..."
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing
+    $maxRetries = 3
+    for ($i = 1; $i -le $maxRetries; $i++) {
+        try {
+            $wc = New-Object System.Net.WebClient
+            $wc.DownloadFile($url, $dest)
+            Write-Host "  Descarga OK."
+            return
+        } catch {
+            Write-Host "  Intento $i/$maxRetries fallo: $_" -ForegroundColor Yellow
+            if ($i -eq $maxRetries) { throw "No se pudo descargar $url despues de $maxRetries intentos." }
+            Start-Sleep -Seconds 5
+        }
+    }
 }
 
 New-Item -ItemType Directory -Path $DOWNLOADS -Force | Out-Null
 
 # =============================================================================
-# 1. Python
+# 1. Dependencias del juego (DirectX 9, Visual C++)
+# =============================================================================
+Write-Step "Instalando DirectX 9.0c End-User Runtime"
+$dxExe = "$DOWNLOADS\dxwebsetup.exe"
+Download-File $DXRUNTIME_URL $dxExe
+Start-Process -FilePath $dxExe -ArgumentList "/Q" -Wait -NoNewWindow
+Write-Host "  DirectX instalado."
+
+Write-Step "Instalando Visual C++ Redistributable 2015-2022"
+$vcExe = "$DOWNLOADS\vc_redist.x64.exe"
+Download-File $VCREDIST_URL $vcExe
+Start-Process -FilePath $vcExe -ArgumentList "/install", "/quiet", "/norestart" -Wait -NoNewWindow
+Write-Host "  Visual C++ Redistributable instalado."
+
+# =============================================================================
+# 2. Python
 # =============================================================================
 Write-Step "Instalando Python $PYTHON_VERSION"
 $pythonExe = "$DOWNLOADS\python-installer.exe"
@@ -49,7 +78,7 @@ if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
 }
 
 # =============================================================================
-# 2. Git
+# 3. Git
 # =============================================================================
 Write-Step "Instalando Git"
 $gitExe = "$DOWNLOADS\git-installer.exe"
@@ -65,7 +94,7 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
 }
 
 # =============================================================================
-# 3. Tesseract OCR
+# 4. Tesseract OCR
 # =============================================================================
 Write-Step "Instalando Tesseract OCR en $TESSERACT_DIR"
 $tessExe = "$DOWNLOADS\tesseract-installer.exe"
@@ -79,7 +108,7 @@ if (-not (Test-Path "$TESSERACT_DIR\tesseract.exe")) {
 }
 
 # =============================================================================
-# 4. Clonar repositorio
+# 5. Clonar repositorio
 # =============================================================================
 Write-Step "Clonando repositorio en $INSTALL_DIR"
 if (-not (Test-Path "$INSTALL_DIR\.git")) {
@@ -92,7 +121,7 @@ if (-not (Test-Path "$INSTALL_DIR\.git")) {
 }
 
 # =============================================================================
-# 5. Virtual environment + dependencias
+# 6. Virtual environment + dependencias
 # =============================================================================
 Write-Step "Creando virtual environment"
 Push-Location $INSTALL_DIR
@@ -117,7 +146,7 @@ print('Todas las dependencias OK')
 Pop-Location
 
 # =============================================================================
-# 6. Recordatorios finales
+# 7. Recordatorios finales
 # =============================================================================
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor Green
